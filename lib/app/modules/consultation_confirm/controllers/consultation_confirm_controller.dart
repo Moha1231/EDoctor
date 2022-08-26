@@ -3,6 +3,8 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:hallo_doctor_client/app/models/time_slot_model.dart';
+import 'package:hallo_doctor_client/app/modules/review/views/review_view.dart';
+import 'package:hallo_doctor_client/app/routes/app_pages.dart';
 import 'package:hallo_doctor_client/app/service/order_service.dart';
 import 'package:hallo_doctor_client/app/service/problem_service.dart';
 
@@ -32,8 +34,10 @@ class ConsultationConfirmController extends GetxController {
       EasyLoading.show();
       await OrderService().confirmOrder(timeSlot);
       EasyLoading.dismiss();
-      Get.offNamedUntil('/review', ModalRoute.withName('/appointment-detail'),
-          arguments: timeSlot);
+      Get.offNamed(Routes.REVIEW, arguments: timeSlot);
+      //Get.toNamed(Routes.REVIEW, arguments: timeSlot);
+      // Get.offNamedUntil('/review', ModalRoute.withName('/appointment-detail'),
+      //     arguments: timeSlot);
     } catch (e) {
       EasyLoading.dismiss();
       Fluttertoast.showToast(msg: e.toString());

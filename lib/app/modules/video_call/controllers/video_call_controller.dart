@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:hallo_doctor_client/app/models/time_slot_model.dart';
+import 'package:hallo_doctor_client/app/routes/app_pages.dart';
 import 'package:hallo_doctor_client/app/service/videocall_service.dart';
 import 'package:hallo_doctor_client/app/utils/environment.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -37,9 +38,10 @@ class VideoCallController extends GetxController {
 
   completedConsultation() async {
     if (videoCallEstablished) {
-      Get.offNamedUntil(
-          '/consultation-confirm', ModalRoute.withName('/appointment-detail'),
-          arguments: timeSlot);
+      Get.offNamed(Routes.CONSULTATION_CONFIRM, arguments: timeSlot);
+      // Get.offNamedUntil(
+      //     '/consultation-confirm', ModalRoute.withName('/appointment-detail'),
+      //     arguments: timeSlot);
     } else {
       printError(info: 'video call not establish yet');
       Get.back();

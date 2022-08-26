@@ -29,7 +29,8 @@ class ReviewController extends GetxController {
     try {
       await ReviewService().saveReview(textEditingReviewController.text,
           rating.value.toInt(), timeSlot, user!);
-      Get.back();
+      Get.close(2);
+      //Get.back();
     } catch (e) {
       Fluttertoast.showToast(msg: e.toString());
     } finally {

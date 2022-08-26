@@ -33,7 +33,12 @@ class DoctorCard extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(10),
-                    child: Image.network(imageUrl!),
+                    child: Image.network(
+                      imageUrl!,
+                      height: 100,
+                      width: 100,
+                      fit: BoxFit.contain,
+                    ),
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
