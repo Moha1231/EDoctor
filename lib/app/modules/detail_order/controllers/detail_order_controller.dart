@@ -73,6 +73,8 @@ class DetailOrderController extends GetxController {
     } catch (err) {
       Fluttertoast.showToast(msg: err.toString());
       return null;
-    } finally {}
+    } finally {
+      EasyLoading.dismiss();
+    }
   }
 }
