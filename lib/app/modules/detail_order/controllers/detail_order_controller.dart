@@ -53,10 +53,6 @@ class DetailOrderController extends GetxController {
 
       await Stripe.instance.initPaymentSheet(
           paymentSheetParameters: SetupPaymentSheetParameters(
-        applePay: true,
-        googlePay: true,
-        testEnv: true,
-        merchantCountryCode: 'US',
         merchantDisplayName: 'Helo Doctor',
         paymentIntentClientSecret: clientSecret,
       ));
