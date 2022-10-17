@@ -45,5 +45,24 @@
 	<false/>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Let us choose the photo</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Let us use the camera</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Let use use the microphone</string>
+	<key>CFBundleURLTypes</key>
+<array>
+	<dict>
+		<key>CFBundleTypeRole</key>
+		<string>Editor</string>
+		<key>CFBundleURLSchemes</key>
+		<array>
+			<!-- TODO Replace this value: -->
+			<!-- Copied from GoogleService-Info.plist key REVERSED_CLIENT_ID -->
+			<string>com.googleusercontent.apps.154487654101-md5au34bgleijfrfbe38a9g9d3c0dko7</string>
+		</array>
+	</dict>
+</array>
 </dict>
 </plist>
