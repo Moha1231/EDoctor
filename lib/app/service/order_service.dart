@@ -27,6 +27,7 @@ class OrderService {
           .collection('Order')
           .where('userId', isEqualTo: UserService().getUserId())
           .where('timeSlotId', isEqualTo: timeSlot.timeSlotId)
+          .where('charged', isEqualTo: true)
           .get();
       print('order length : ' + orderData.docs.length.toString());
       var data = orderData.docs.elementAt(0).data();
