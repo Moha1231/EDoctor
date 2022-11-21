@@ -5,6 +5,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:hallo_doctor_client/app/modules/chat/views/list_users_view.dart';
+import 'package:hallo_doctor_client/app/routes/app_pages.dart';
 import 'package:hallo_doctor_client/app/service/notification_service.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:hallo_doctor_client/app/modules/profile/views/pages/change_password.dart';
@@ -129,6 +130,10 @@ class ProfileController extends GetxController {
     } catch (e) {
       return Future.error(e.toString());
     }
+  }
+
+  void toSettings() {
+    Get.toNamed(Routes.SETTINGS);
   }
 
   // Future<bool> checkGoogleLogin() async {

@@ -64,6 +64,13 @@ class ProfileView extends GetView<ProfileController> {
                         controller.toChangePassword();
                       },
                     ),
+                    ProfileButton(
+                      icon: Icons.settings,
+                      text: 'Settings'.tr,
+                      onTap: () {
+                        controller.toSettings();
+                      },
+                    ),
                     SizedBox(
                       height: 20,
                     ),

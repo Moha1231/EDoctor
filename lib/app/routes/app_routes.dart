@@ -28,6 +28,8 @@ abstract class Routes {
   static const CONSULTATION_CONFIRM = _Paths.CONSULTATION_CONFIRM;
   static const CHAT = _Paths.CHAT;
   static const LIST_CHAT = _Paths.LIST_CHAT;
+  static const SETTINGS = _Paths.SETTINGS;
+  static const DELETE_ACCOUNT = _Paths.DELETE_ACCOUNT;
 }
 
 abstract class _Paths {
@@ -53,4 +55,6 @@ abstract class _Paths {
   static const CONSULTATION_CONFIRM = '/consultation-confirm';
   static const CHAT = '/chat';
   static const LIST_CHAT = '/list-chat';
+  static const SETTINGS = '/settings';
+  static const DELETE_ACCOUNT = '/delete-account';
 }

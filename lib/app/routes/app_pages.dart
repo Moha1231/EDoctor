@@ -1,49 +1,53 @@
 import 'package:get/get.dart';
 
-import 'package:hallo_doctor_client/app/modules/appointment/bindings/appointment_binding.dart';
-import 'package:hallo_doctor_client/app/modules/appointment/views/appointment_view.dart';
-import 'package:hallo_doctor_client/app/modules/appointment_detail/bindings/appointment_detail_binding.dart';
-import 'package:hallo_doctor_client/app/modules/appointment_detail/views/appointment_detail_view.dart';
-import 'package:hallo_doctor_client/app/modules/chat/bindings/chat_binding.dart';
-import 'package:hallo_doctor_client/app/modules/chat/views/chat_view.dart';
-import 'package:hallo_doctor_client/app/modules/consultation_confirm/bindings/consultation_confirm_binding.dart';
-import 'package:hallo_doctor_client/app/modules/consultation_confirm/views/consultation_confirm_view.dart';
-import 'package:hallo_doctor_client/app/modules/consultation_date_picker/bindings/consultation_date_picker_binding.dart';
-import 'package:hallo_doctor_client/app/modules/consultation_date_picker/views/consultation_date_picker_view.dart';
-import 'package:hallo_doctor_client/app/modules/dashboard/bindings/dashboard_binding.dart';
-import 'package:hallo_doctor_client/app/modules/dashboard/views/dashboard_view.dart';
-import 'package:hallo_doctor_client/app/modules/detail_doctor/bindings/detail_doctor_binding.dart';
-import 'package:hallo_doctor_client/app/modules/detail_doctor/views/detail_doctor_view.dart';
-import 'package:hallo_doctor_client/app/modules/detail_order/bindings/detail_order_binding.dart';
-import 'package:hallo_doctor_client/app/modules/detail_order/views/detail_order_view.dart';
-import 'package:hallo_doctor_client/app/modules/doctor_category/bindings/doctor_category_binding.dart';
-import 'package:hallo_doctor_client/app/modules/doctor_category/views/doctor_category_view.dart';
-import 'package:hallo_doctor_client/app/modules/forgot_password/bindings/forgot_password_binding.dart';
-import 'package:hallo_doctor_client/app/modules/forgot_password/views/forgot_password_view.dart';
-import 'package:hallo_doctor_client/app/modules/home/bindings/home_binding.dart';
-import 'package:hallo_doctor_client/app/modules/home/views/home_view.dart';
-import 'package:hallo_doctor_client/app/modules/list_chat/bindings/list_chat_binding.dart';
-import 'package:hallo_doctor_client/app/modules/list_chat/views/list_chat_view.dart';
-import 'package:hallo_doctor_client/app/modules/list_doctor/bindings/list_doctor_binding.dart';
-import 'package:hallo_doctor_client/app/modules/list_doctor/views/list_doctor_view.dart';
-import 'package:hallo_doctor_client/app/modules/login/bindings/login_binding.dart';
-import 'package:hallo_doctor_client/app/modules/login/views/login_view.dart';
-import 'package:hallo_doctor_client/app/modules/payment_success/bindings/payment_success_binding.dart';
-import 'package:hallo_doctor_client/app/modules/payment_success/views/payment_success_view.dart';
-import 'package:hallo_doctor_client/app/modules/profile/bindings/profile_binding.dart';
-import 'package:hallo_doctor_client/app/modules/profile/views/profile_view.dart';
-import 'package:hallo_doctor_client/app/modules/register/bindings/register_binding.dart';
-import 'package:hallo_doctor_client/app/modules/register/views/register_view.dart';
-import 'package:hallo_doctor_client/app/modules/reset_password/bindings/reset_password_binding.dart';
-import 'package:hallo_doctor_client/app/modules/reset_password/views/reset_password_view.dart';
-import 'package:hallo_doctor_client/app/modules/review/bindings/review_binding.dart';
-import 'package:hallo_doctor_client/app/modules/review/views/review_view.dart';
-import 'package:hallo_doctor_client/app/modules/search_doctor/bindings/search_doctor_binding.dart';
-import 'package:hallo_doctor_client/app/modules/search_doctor/views/search_doctor_view.dart';
-import 'package:hallo_doctor_client/app/modules/top_rated_doctor/bindings/top_rated_doctor_binding.dart';
-import 'package:hallo_doctor_client/app/modules/top_rated_doctor/views/top_rated_doctor_view.dart';
-import 'package:hallo_doctor_client/app/modules/video_call/bindings/video_call_binding.dart';
-import 'package:hallo_doctor_client/app/modules/video_call/views/video_call_view.dart';
+import '../modules/appointment/bindings/appointment_binding.dart';
+import '../modules/appointment/views/appointment_view.dart';
+import '../modules/appointment_detail/bindings/appointment_detail_binding.dart';
+import '../modules/appointment_detail/views/appointment_detail_view.dart';
+import '../modules/chat/bindings/chat_binding.dart';
+import '../modules/chat/views/chat_view.dart';
+import '../modules/consultation_confirm/bindings/consultation_confirm_binding.dart';
+import '../modules/consultation_confirm/views/consultation_confirm_view.dart';
+import '../modules/consultation_date_picker/bindings/consultation_date_picker_binding.dart';
+import '../modules/consultation_date_picker/views/consultation_date_picker_view.dart';
+import '../modules/dashboard/bindings/dashboard_binding.dart';
+import '../modules/dashboard/views/dashboard_view.dart';
+import '../modules/delete_account/bindings/delete_account_binding.dart';
+import '../modules/delete_account/views/delete_account_view.dart';
+import '../modules/detail_doctor/bindings/detail_doctor_binding.dart';
+import '../modules/detail_doctor/views/detail_doctor_view.dart';
+import '../modules/detail_order/bindings/detail_order_binding.dart';
+import '../modules/detail_order/views/detail_order_view.dart';
+import '../modules/doctor_category/bindings/doctor_category_binding.dart';
+import '../modules/doctor_category/views/doctor_category_view.dart';
+import '../modules/forgot_password/bindings/forgot_password_binding.dart';
+import '../modules/forgot_password/views/forgot_password_view.dart';
+import '../modules/home/bindings/home_binding.dart';
+import '../modules/home/views/home_view.dart';
+import '../modules/list_chat/bindings/list_chat_binding.dart';
+import '../modules/list_chat/views/list_chat_view.dart';
+import '../modules/list_doctor/bindings/list_doctor_binding.dart';
+import '../modules/list_doctor/views/list_doctor_view.dart';
+import '../modules/login/bindings/login_binding.dart';
+import '../modules/login/views/login_view.dart';
+import '../modules/payment_success/bindings/payment_success_binding.dart';
+import '../modules/payment_success/views/payment_success_view.dart';
+import '../modules/profile/bindings/profile_binding.dart';
+import '../modules/profile/views/profile_view.dart';
+import '../modules/register/bindings/register_binding.dart';
+import '../modules/register/views/register_view.dart';
+import '../modules/reset_password/bindings/reset_password_binding.dart';
+import '../modules/reset_password/views/reset_password_view.dart';
+import '../modules/review/bindings/review_binding.dart';
+import '../modules/review/views/review_view.dart';
+import '../modules/search_doctor/bindings/search_doctor_binding.dart';
+import '../modules/search_doctor/views/search_doctor_view.dart';
+import '../modules/settings/bindings/settings_binding.dart';
+import '../modules/settings/views/settings_view.dart';
+import '../modules/top_rated_doctor/bindings/top_rated_doctor_binding.dart';
+import '../modules/top_rated_doctor/views/top_rated_doctor_view.dart';
+import '../modules/video_call/bindings/video_call_binding.dart';
+import '../modules/video_call/views/video_call_view.dart';
 
 // ignore_for_file: constant_identifier_names
 
@@ -165,6 +169,16 @@ class AppPages {
       name: _Paths.LIST_CHAT,
       page: () => ListChatView(),
       binding: ListChatBinding(),
+    ),
+    GetPage(
+      name: _Paths.SETTINGS,
+      page: () => const SettingsView(),
+      binding: SettingsBinding(),
+    ),
+    GetPage(
+      name: _Paths.DELETE_ACCOUNT,
+      page: () => const DeleteAccountView(),
+      binding: DeleteAccountBinding(),
     ),
   ];
 }

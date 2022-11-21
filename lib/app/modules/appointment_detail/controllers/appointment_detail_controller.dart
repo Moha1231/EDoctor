@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:hallo_doctor_client/app/models/doctor_model.dart';
-import 'package:hallo_doctor_client/app/models/order_model.dart';
+import 'package:hallo_doctor_client/app/models/order_model.dart' as orderModel;
 import 'package:hallo_doctor_client/app/models/time_slot_model.dart';
 import 'package:hallo_doctor_client/app/service/doctor_service.dart';
 import 'package:hallo_doctor_client/app/service/order_service.dart';
@@ -20,7 +20,7 @@ class AppointmentDetailController extends GetxController
   //ParseObject? room;
   TimeSlot selectedTimeslot = Get.arguments;
   late Doctor doctor;
-  late Order order;
+  late orderModel.Order order;
   late String token;
   var database = FirebaseDatabase.instance.ref();
   late StreamSubscription _roomStreaming;
