@@ -47,4 +47,10 @@ class RegisterController extends GetxController {
   void loginGoogle() {
     authService.loginGoogle().then((value) => Get.offAllNamed('/dashboard'));
   }
+
+  void loginApple() {
+    authService
+        .signInWithApple()
+        .then((value) => Get.offAllNamed('/dashboard'));
+  }
 }

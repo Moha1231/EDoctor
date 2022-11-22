@@ -30,6 +30,12 @@ class LoginController extends GetxController {
     authService.loginGoogle().then((value) => Get.offAllNamed('/dashboard'));
   }
 
+  void loginApple() {
+    authService
+        .signInWithApple()
+        .then((value) => Get.offAllNamed('/dashboard'));
+  }
+
   void login() async {
     if (loginFormKey.currentState!.validate()) {
       loginFormKey.currentState!.save();

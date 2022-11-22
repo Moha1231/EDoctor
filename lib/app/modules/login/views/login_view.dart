@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:get/get.dart';
@@ -135,6 +136,21 @@ class LoginView extends GetView<LoginController> {
                       },
                     ),
                   ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  defaultTargetPlatform == TargetPlatform.iOS
+                      ? Container(
+                          width: Get.width,
+                          height: 50,
+                          child: SignInButton(
+                            Buttons.AppleDark,
+                            onPressed: () {
+                              controller.loginApple();
+                            },
+                          ),
+                        )
+                      : Container(),
                   SizedBox(height: 20),
                   LabelButton(
                     onTap: () {

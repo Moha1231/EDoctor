@@ -5,6 +5,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hallo_doctor_client/app/service/firebase_service.dart';
 import 'package:hallo_doctor_client/app/service/google_signin_api.dart';
 import 'package:hallo_doctor_client/app/service/user_service.dart';
+import 'package:hallo_doctor_client/app/utils/helpers/converter.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 class AuthService {
   static final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -23,6 +25,55 @@ class AuthService {
       await FirebaseService().userSetup(user!, user.displayName!);
     } on FirebaseAuthException catch (err) {
       return Future.error(err.message!);
+    }
+  }
+
+  Future<User> signInWithApple() async {
+    // To prevent replay attacks with the credential returned from Apple, we
+    // include a nonce in the credential request. When signing in in with
+    // Firebase, the nonce in the id token returned by Apple, is expected to
+    // match the sha256 hash of `rawNonce`.
+    final rawNonce = generateNonce();
+    final nonce = Converter().sha256ofString(rawNonce);
+
+    try {
+      // Request credential for the currently signed in Apple account.
+      final appleCredential = await SignInWithApple.getAppleIDCredential(
+        scopes: [
+          AppleIDAuthorizationScopes.email,
+          AppleIDAuthorizationScopes.fullName,
+        ],
+        nonce: nonce,
+      );
+
+      print(appleCredential.authorizationCode);
+
+      // Create an `OAuthCredential` from the credential returned by Apple.
+      final oauthCredential = OAuthProvider("apple.com").credential(
+        idToken: appleCredential.identityToken,
+        rawNonce: rawNonce,
+      );
+
+      // Sign in the user with Firebase. If the nonce we generated earlier does
+      // not match the nonce in `appleCredential.identityToken`, sign in will fail.
+      final authResult = await _auth.signInWithCredential(oauthCredential);
+
+      final displayName =
+          '${appleCredential.givenName} ${appleCredential.familyName}';
+      final userEmail = '${appleCredential.email}';
+
+      final firebaseUser = authResult.user;
+      print('display name : ' + displayName);
+      print('email : ' + userEmail);
+      if (appleCredential.givenName != null) {
+        await firebaseUser!.updateDisplayName(displayName);
+        await firebaseUser.updateEmail(userEmail);
+        await FirebaseService().userSetup(firebaseUser, displayName);
+      }
+      return firebaseUser!;
+    } catch (exception) {
+      print(exception);
+      return Future.error(exception);
     }
   }
 

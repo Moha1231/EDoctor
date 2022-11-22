@@ -125,7 +125,7 @@ class UserService {
   Future deleteAccountPermanently() async {
     try {
       var callable = FirebaseFunctions.instance.httpsCallable('deleteUser');
-      await callable({'userId': user!.uid});
+      await callable({'userId': currentUser!.uid});
     } catch (e) {
       return Future.error(e);
     }
