@@ -44,7 +44,9 @@ class DetailOrderController extends GetxController {
     return orderDetail;
   }
 
-  void makePayment() async {
+  /// by default the payment method we us is Stripe to change you need to change
+  /// makePayment method and change the cloud function method
+  void payWithStripe() async {
     EasyLoading.show();
     try {
       var clientSecret = await paymentService.getClientSecret(
@@ -53,14 +55,14 @@ class DetailOrderController extends GetxController {
 
       await Stripe.instance.initPaymentSheet(
           paymentSheetParameters: SetupPaymentSheetParameters(
-        merchantDisplayName: 'Helo Doctor',
+        merchantDisplayName: appName,
         paymentIntentClientSecret: clientSecret,
       ));
       EasyLoading.dismiss();
       await Stripe.instance.presentPaymentSheet();
 
       Get.offNamed('/payment-success', arguments: selectedTimeSlot);
-      //selectedTimeSlot.timeSlot
+
       notificationService
           .setNotificationAppointment(selectedTimeSlot.timeSlot!);
     } on StripeException catch (err) {
@@ -71,6 +73,34 @@ class DetailOrderController extends GetxController {
       return null;
     } finally {
       EasyLoading.dismiss();
+    }
+  }
+
+  void purchaseFreeTimeslot() async {
+//check the price if 0 call cloud function to check if this timeslot is actually 0
+    //then return true, if false then throw error
+
+    try {
+      EasyLoading.show();
+      bool result = await PaymentService().purchaseFreeTimeSlot(
+          selectedTimeSlot.timeSlotId!, userService.getUserId());
+      if (result) {
+        Get.offNamed('/payment-success', arguments: selectedTimeSlot);
+      }
+    } catch (e) {
+      Fluttertoast.showToast(msg: e.toString(), toastLength: Toast.LENGTH_LONG);
+    } finally {
+      EasyLoading.dismiss();
+    }
+  }
+
+  void makePayment() async {
+    if (selectedTimeSlot.price! <= 0) {
+      print('purchase free timeslot : ');
+      purchaseFreeTimeslot();
+    } else {
+      print('purchase stripe');
+      payWithStripe();
     }
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:get/get.dart';
 import 'package:hallo_doctor_client/app/modules/login/views/widgets/divider_or.dart';
@@ -28,12 +29,13 @@ class LoginView extends GetView<LoginController> {
                   SizedBox(height: height * .2),
                   TitleApp(),
                   SizedBox(height: 50),
-                  Form(
+                  FormBuilder(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     key: controller.loginFormKey,
                     child: Column(
                       children: [
-                        TextFormField(
+                        FormBuilderTextField(
+                          name: 'username',
                           textInputAction: TextInputAction.next,
                           onEditingComplete: () {
                             node.nextFocus();
@@ -45,9 +47,6 @@ class LoginView extends GetView<LoginController> {
                               return null;
                             }
                           }),
-                          onSaved: (username) {
-                            controller.username = username ?? '';
-                          },
                           decoration: InputDecoration(
                               hintText: 'Email',
                               border: OutlineInputBorder(
@@ -61,7 +60,7 @@ class LoginView extends GetView<LoginController> {
                         ),
                         SizedBox(height: 30),
                         GetBuilder<LoginController>(
-                          builder: (controller) => TextFormField(
+                          builder: (cont) => FormBuilderTextField(
                             obscureText: controller.passwordVisible,
                             textInputAction: TextInputAction.done,
                             decoration: InputDecoration(
@@ -84,18 +83,9 @@ class LoginView extends GetView<LoginController> {
                                     controller.passwordIconVisibility();
                                   },
                                 )),
-                            validator: ((value) {
-                              if (value!.isEmpty) {
-                                return 'Password cannot be empty'.tr;
-                              } else {
-                                return null;
-                              }
-                            }),
-                            onSaved: (password) {
-                              controller.password = password ?? '';
-                            },
+                            name: 'password',
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),

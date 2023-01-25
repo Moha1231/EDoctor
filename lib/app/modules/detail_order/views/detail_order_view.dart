@@ -13,6 +13,7 @@ enum ChosePayment { addCard, creditCard }
 
 class DetailOrderView extends GetView<DetailOrderController> {
   final String assetName = 'assets/icons/powered-by-stripe.svg';
+  bool isInReleaseMode = bool.fromEnvironment("dart.vm.product");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,16 +84,21 @@ class DetailOrderView extends GetView<DetailOrderController> {
                     ),
                     InkWell(
                       onTap: () {
-                        Get.defaultDialog(
-                          title: 'Test Mode',
-                          content: Text(
-                              'This is a testing mode, to make a payment in test mode, please enter the number 42 consecutively in the credit card details, E.g. credit card: 424242424244242'),
-                          textConfirm: 'Make Payment With Stripe',
-                          onConfirm: () {
-                            Get.back();
-                            controller.makePayment();
-                          },
-                        );
+                        if (isInReleaseMode) {
+                          controller.makePayment();
+                        } else {
+                          Get.defaultDialog(
+                            title: 'Test Mode',
+                            content: Text(
+                                'This is a testing mode, to make a payment in test mode, please enter the number 42 consecutively in the credit card details, E.g. credit card: 424242424244242'),
+                            textConfirm: 'Make Payment With Stripe',
+                            onConfirm: () {
+                              Get.back();
+                              controller.makePayment();
+                            },
+                          );
+                        }
+
                         //
                       },
                       child: Container(
@@ -107,7 +113,10 @@ class DetailOrderView extends GetView<DetailOrderController> {
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
-                    )
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
                   ],
                 )),
           ),

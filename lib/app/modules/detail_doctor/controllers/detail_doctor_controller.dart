@@ -11,6 +11,7 @@ class DetailDoctorController extends GetxController with StateMixin<Doctor> {
   final count = 0.obs;
   Doctor selectedDoctor = Get.arguments;
   List<ReviewModel> listReview = [];
+
   @override
   void onInit() {
     super.onInit();
