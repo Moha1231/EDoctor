@@ -35,6 +35,7 @@ void main() async {
       ],
       locale: LocalizationService.locale,
       translations: LocalizationService(),
+      theme: ThemeData(useMaterial3: true),
     ),
   );
 }

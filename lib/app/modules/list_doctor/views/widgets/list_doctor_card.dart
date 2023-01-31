@@ -65,7 +65,7 @@ class DoctorCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      height: 110,
+                      height: 120,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [

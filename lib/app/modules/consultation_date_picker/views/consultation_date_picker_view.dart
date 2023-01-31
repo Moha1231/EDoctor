@@ -31,6 +31,7 @@ class ConsultationDatePickerView
             height: 10,
           ),
           Container(
+            height: 90,
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -45,7 +46,7 @@ class ConsultationDatePickerView
               },
             ),
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 10),
           Container(
             alignment: Alignment.centerLeft,
             child: Text(
