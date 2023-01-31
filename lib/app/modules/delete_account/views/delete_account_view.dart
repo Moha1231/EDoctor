@@ -84,7 +84,7 @@ class DeleteAccountView extends GetView<DeleteAccountController> {
             SizedBox(
               height: 10,
             ),
-            submitButton(
+            SubmitButton(
                 onTap: () {
                   controller.deleteAccount();
                 },

@@ -51,7 +51,7 @@ class UpdateEmailPage extends GetView<ProfileController> {
                     )),
                 Padding(
                   padding: EdgeInsets.only(top: 150, left: 20, right: 20),
-                  child: submitButton(
+                  child: SubmitButton(
                       onTap: () {
                         _formKey.currentState!.save();
                         if (_formKey.currentState!.validate()) {

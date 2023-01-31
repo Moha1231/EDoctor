@@ -23,8 +23,16 @@ void main() async {
   initializeDateFormatting('en', null);
   FirebaseChatCore.instance
       .setConfig(FirebaseChatCoreConfig(null, 'Rooms', 'Users'));
-  runApp(
-    GetMaterialApp(
+  runApp(HalloDoctorApp(isUserLogin: isUserLogin));
+}
+
+class HalloDoctorApp extends StatelessWidget {
+  HalloDoctorApp({super.key, required this.isUserLogin});
+  final bool isUserLogin;
+
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Application",
       initialRoute: isUserLogin ? AppPages.DASHBOARD : AppPages.LOGIN,
@@ -36,6 +44,6 @@ void main() async {
       locale: LocalizationService.locale,
       translations: LocalizationService(),
       theme: ThemeData(useMaterial3: true),
-    ),
-  );
+    );
+  }
 }

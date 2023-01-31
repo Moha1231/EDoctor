@@ -32,7 +32,7 @@ class ConsultationConfirmView extends GetView<ConsultationConfirmController> {
                     SizedBox(
                       height: 30,
                     ),
-                    submitButton(
+                    SubmitButton(
                         onTap: () {
                           Get.defaultDialog(
                               title: 'Confirm'.tr,

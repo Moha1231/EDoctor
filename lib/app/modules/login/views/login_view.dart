@@ -35,6 +35,7 @@ class LoginView extends GetView<LoginController> {
                     child: Column(
                       children: [
                         FormBuilderTextField(
+                          key: Key('username'),
                           name: 'username',
                           textInputAction: TextInputAction.next,
                           onEditingComplete: () {
@@ -61,6 +62,7 @@ class LoginView extends GetView<LoginController> {
                         SizedBox(height: 30),
                         GetBuilder<LoginController>(
                           builder: (cont) => FormBuilderTextField(
+                            key: Key('password'),
                             obscureText: controller.passwordVisible,
                             textInputAction: TextInputAction.done,
                             decoration: InputDecoration(
@@ -104,7 +106,8 @@ class LoginView extends GetView<LoginController> {
                     ),
                   ),
                   SizedBox(height: height * .020),
-                  submitButton(
+                  SubmitButton(
+                      key: Key('loginButton'),
                       onTap: () {
                         controller.login();
                       },

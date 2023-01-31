@@ -63,7 +63,7 @@ class ReviewView extends GetView<ReviewController> {
                   SizedBox(
                     height: 50,
                   ),
-                  submitButton(
+                  SubmitButton(
                       onTap: () {
                         controller.saveReiew();
                       },

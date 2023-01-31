@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:hallo_doctor_client/app/modules/appointment_detail/views/widgets/doctor_tile.dart';
+import 'package:hallo_doctor_client/app/utils/constants/constants.dart';
 import 'package:hallo_doctor_client/app/utils/styles/styles.dart';
 import 'package:hallo_doctor_client/app/utils/timeformat.dart';
 
@@ -113,10 +114,8 @@ class AppointmentDetailView extends GetView<AppointmentDetailController> {
                             SizedBox(height: 50, child: Text('Duration'.tr)),
                             SizedBox(
                                 height: 50,
-                                child: Text(': ' +
-                                    controller.selectedTimeslot.duration
-                                        .toString() +
-                                    ' Minute'.tr)),
+                                child: Text(
+                                    ': ${controller.selectedTimeslot.duration}${' Minute'.tr}')),
                           ]),
                           TableRow(
                             children: [
@@ -127,10 +126,7 @@ class AppointmentDetailView extends GetView<AppointmentDetailController> {
                               SizedBox(
                                 height: 50,
                                 child: Text(
-                                  ': \$' +
-                                      controller.selectedTimeslot.price
-                                          .toString() +
-                                      ' (Paid)'.tr,
+                                  ': $currencySign ${controller.selectedTimeslot.price}${' (Paid)'.tr}',
                                 ),
                               ),
                             ],

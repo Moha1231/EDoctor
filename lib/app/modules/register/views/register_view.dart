@@ -139,7 +139,7 @@ class RegisterView extends GetView<RegisterController> {
                       SizedBox(
                         height: 20,
                       ),
-                      submitButton(
+                      SubmitButton(
                           onTap: () {
                             controller.signUpUser();
                           },
