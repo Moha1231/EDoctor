@@ -85,6 +85,7 @@ class ProfileView extends GetView<ProfileController> {
                     ),
                     //uncomment if you wanto test something
                     // ElevatedButton(
+                    //   key: Key('testButton'),
                     //   onPressed: () {
                     //     controller.testButton();
                     //     //LocalizationService().changeLocale('France');

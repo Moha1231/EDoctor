@@ -92,6 +92,7 @@ class LoginView extends GetView<LoginController> {
                     ),
                   ),
                   InkWell(
+                    key: Key('forgotPasswordButton'),
                     onTap: () {
                       Get.toNamed('/forgot-password');
                     },

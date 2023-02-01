@@ -49,5 +49,8 @@ void main() async {
     await tester.tap(loginButton, warnIfMissed: true);
     await tester.pumpAndSettle();
     await tester.pump(Duration(seconds: 2));
+
+    //find test button
+    expect(find.byKey(ValueKey('testButton')), findsNothing);
   });
 }
