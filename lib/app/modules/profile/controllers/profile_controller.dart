@@ -1,11 +1,13 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:hallo_doctor_client/app/modules/chat/views/list_users_view.dart';
 import 'package:hallo_doctor_client/app/routes/app_pages.dart';
+import 'package:hallo_doctor_client/app/service/local_notification_service.dart';
 import 'package:hallo_doctor_client/app/service/notification_service.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:hallo_doctor_client/app/modules/profile/views/pages/change_password.dart';
@@ -36,11 +38,9 @@ class ProfileController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    var user = userService.currentUser;
-    print('user : ' + user.toString());
     profilePic.value = userService.getProfilePicture()!;
-    username.value = user!.displayName!;
-    email.value = user.email!;
+    username.value = userService.currentUserFirebase!.displayName!;
+    email.value = userService.currentUserFirebase!.email!;
   }
 
   @override
@@ -122,11 +122,20 @@ class ProfileController extends GetxController {
 //user for testing something
   Future testButton() async {
     try {
-      // print('my uid : ' + UserService().currentUser!.uid);
-      // Get.to(() => ListUser());
-      NotificationService notificationService = Get.find<NotificationService>();
-      await Future.delayed(Duration(seconds: 10));
-      // notificationService.showCallNotification('amsyari', 'roomname', 'token');
+      DateTime scheduleTime = DateTime.now();
+      final oneMinutefromNow = scheduleTime.add(const Duration(seconds: 20));
+      debugPrint('Notification Scheduled for $oneMinutefromNow');
+      LocalNotificationService().scheduleNotification(
+          title: 'Scheduled Notification',
+          body: '$oneMinutefromNow',
+          scheduledNotificationDateTime: oneMinutefromNow);
+      //NotificationService().testNotification();
+      // DateTime now = DateTime.now();
+      // Duration tenMinutes = Duration(minutes: 10);
+      // DateTime tenMinutesBefore = now.subtract(tenMinutes);
+
+      // print(
+      //     'Ten minutes before ${now.toString()}: ${tenMinutesBefore.toString()}');
     } catch (e) {
       return Future.error(e.toString());
     }

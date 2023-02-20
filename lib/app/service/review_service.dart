@@ -16,10 +16,10 @@ class ReviewService {
         'review': review,
         'rating': rating,
         'timeSlotId': timeSlot.timeSlotId,
-        'userId': UserService().currentUser!.uid,
+        'userId': UserService().currentUserFirebase!.uid,
         'doctorId': timeSlot.doctorid,
         'user': {
-          'displayName': UserService().currentUser!.displayName,
+          'displayName': UserService().currentUserFirebase!.displayName,
           'photoUrl': UserService().getProfilePicture(),
         }
       });

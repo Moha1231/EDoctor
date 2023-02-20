@@ -11,7 +11,7 @@ class DeleteAccountView extends GetView<DeleteAccountController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Delete Account'),
+        title: Text('Delete Account'.tr),
         centerTitle: true,
       ),
       body: Container(

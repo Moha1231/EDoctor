@@ -39,7 +39,7 @@ class ChangePasswordPage extends GetView<ProfileController> {
                           FormBuilderValidators.minLength(3)
                         ]),
                         decoration:
-                            InputDecoration(labelText: 'Curren Password'),
+                            InputDecoration(labelText: 'Curren Password'.tr),
                         name: 'currentPassword',
                         keyboardType: TextInputType.visiblePassword,
                         onEditingComplete: () => node.nextFocus(),

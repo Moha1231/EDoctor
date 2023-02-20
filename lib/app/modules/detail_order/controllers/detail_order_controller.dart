@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:hallo_doctor_client/app/models/doctor_model.dart';
 import 'package:hallo_doctor_client/app/models/order_detail_model.dart';
 import 'package:hallo_doctor_client/app/models/time_slot_model.dart';
+import 'package:hallo_doctor_client/app/modules/profile/controllers/profile_controller.dart';
+import 'package:hallo_doctor_client/app/service/local_notification_service.dart';
 import 'package:hallo_doctor_client/app/service/notification_service.dart';
 import 'package:hallo_doctor_client/app/service/payment_service.dart';
 import 'package:hallo_doctor_client/app/service/user_service.dart';
@@ -37,9 +39,9 @@ class DetailOrderController extends GetxController {
 
     var orderDetail = OrderDetailModel(
         itemId: selectedTimeSlot.timeSlotId!,
-        itemName: 'Consultation with ' + doctor.doctorName!,
+        itemName: 'Consultation with ${doctor.doctorName!}',
         time: time,
-        duration: selectedTimeSlot.duration.toString() + ' minute',
+        duration: '${selectedTimeSlot.duration} minute',
         price: currencySign + selectedTimeSlot.price.toString());
     return orderDetail;
   }
@@ -62,9 +64,9 @@ class DetailOrderController extends GetxController {
       await Stripe.instance.presentPaymentSheet();
 
       Get.offNamed('/payment-success', arguments: selectedTimeSlot);
-
-      notificationService
-          .setNotificationAppointment(selectedTimeSlot.timeSlot!);
+      //TODO implement notification
+      await LocalNotificationService().setAppointmentNotification(
+          doctor: doctor, timeSlot: selectedTimeSlot);
     } on StripeException catch (err) {
       Fluttertoast.showToast(msg: err.error.message!);
       return null;

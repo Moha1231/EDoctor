@@ -25,7 +25,7 @@ class ReviewController extends GetxController {
   void onClose() {}
   void saveReiew() async {
     EasyLoading.show(maskType: EasyLoadingMaskType.black);
-    var user = UserService().currentUser;
+    var user = UserService().currentUserFirebase;
     try {
       await ReviewService().saveReview(textEditingReviewController.text,
           rating.value.toInt(), timeSlot, user!);

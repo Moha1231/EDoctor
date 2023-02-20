@@ -41,7 +41,7 @@ void main() async {
     await tester.enterText(usernameText, 'test11@gmail.com');
     await tester.enterText(passwordText, 'test11');
     await tester.pumpAndSettle();
-    await tester.pump(Duration(seconds: 2));
+    await tester.pump(Duration(seconds: 10));
 
     // Find login button
     final Finder loginButton = find.byKey(ValueKey('loginButton'));

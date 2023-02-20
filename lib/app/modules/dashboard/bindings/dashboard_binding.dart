@@ -13,13 +13,13 @@ import '../controllers/dashboard_controller.dart';
 class DashboardBinding extends Bindings {
   @override
   void dependencies() {
-    Get.put(AuthService());
-    Get.lazyPut<DashboardController>(
-      () => DashboardController(),
-    );
     Get.lazyPut<NotificationService>(
       () => NotificationService(),
     );
+    Get.put(
+      DashboardController(),
+    );
+    Get.put(AuthService());
     Get.lazyPut<UserService>(() => UserService());
     Get.put(HomeController());
     Get.lazyPut<ProfileController>(() => ProfileController());

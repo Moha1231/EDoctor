@@ -10,7 +10,6 @@ import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:hallo_doctor_client/app/service/user_service.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mime/mime.dart';
-import 'package:open_file/open_file.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
 import '../../../models/doctor_model.dart';
@@ -18,14 +17,14 @@ import '../../../models/doctor_model.dart';
 class ChatController extends GetxController {
   var messages = <types.Message>[].obs;
   late types.User user;
-  var room = Get.arguments[0];
+  types.Room room = Get.arguments[0];
   final count = 0.obs;
   var isAttachmentUploading = false.obs;
   Doctor doctor = Get.arguments[1];
   @override
   void onInit() {
     super.onInit();
-    user = types.User(id: UserService().currentUser!.uid);
+    user = types.User(id: UserService().currentUserFirebase!.uid);
   }
 
   @override
@@ -85,7 +84,6 @@ class ChatController extends GetxController {
         final reference = FirebaseStorage.instance.ref(name);
         await reference.putFile(file);
         final uri = await reference.getDownloadURL();
-
         final message = types.PartialImage(
           height: image.height.toDouble(),
           name: name,
@@ -107,7 +105,7 @@ class ChatController extends GetxController {
 
   void handleMessageTap(BuildContext context, types.Message message) async {
     if (message is types.FileMessage) {
-      await OpenFile.open(message.uri);
+      //await OpenFile.open(message.uri);
     }
   }
 

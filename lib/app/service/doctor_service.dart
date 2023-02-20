@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:hallo_doctor_client/app/collection/firebase_collection.dart';
 import 'package:hallo_doctor_client/app/models/doctor_category_model.dart';
 import 'package:hallo_doctor_client/app/models/doctor_model.dart';
 import 'package:hallo_doctor_client/app/models/time_slot_model.dart';
@@ -30,14 +31,19 @@ class DoctorService {
 
 // Get doctor and all its property
   Future<Doctor> getDoctorDetail(String doctorId) async {
-    var doctorSnapshot = await FirebaseFirestore.instance
-        .collection('Doctors')
-        .doc(doctorId)
-        .get();
-    Doctor doctor =
-        Doctor.fromJson(doctorSnapshot.data() as Map<String, dynamic>);
-    doctor.doctorId = doctorId;
-    return doctor;
+    // var doctorSnapshot = await FirebaseFirestore.instance
+    //     .collection('Doctors')
+    //     .doc(doctorId)
+    //     .get();
+    // Doctor doctor =
+    //     Doctor.fromJson(doctorSnapshot.data() as Map<String, dynamic>);
+    // doctor.doctorId = doctorId;
+    var doctor = await FirebaseCollection().doctorCol.doc(doctorId).get();
+    if (doctor.exists) {
+      return doctor.data()!;
+    } else {
+      throw Exception('Doctor data is not found');
+    }
   }
 
   Future<List<Doctor>> getListDoctorByCategory(

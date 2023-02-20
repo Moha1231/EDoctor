@@ -1,15 +1,24 @@
 //import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 import 'package:cloud_functions/cloud_functions.dart';
+import 'package:connectycube_flutter_call_kit/connectycube_flutter_call_kit.dart'
+    as call;
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_callkit_incoming/flutter_callkit_incoming.dart';
+import 'package:flutter_callkit_incoming/entities/call_kit_params.dart';
+import 'package:flutter_callkit_incoming/entities/entities.dart';
+//import 'package:flutter_callkit_incoming/flutter_callkit_incoming.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 import 'package:get/get.dart';
 import 'package:hallo_doctor_client/app/models/time_slot_model.dart';
+import 'package:hallo_doctor_client/app/modules/chat/controllers/chat_controller.dart';
+import 'package:hallo_doctor_client/app/routes/app_pages.dart';
+import 'package:hallo_doctor_client/app/service/chat_service.dart';
 import 'package:hallo_doctor_client/app/service/timeslot_service.dart';
+import 'package:hallo_doctor_client/app/service/user_service.dart';
+import 'package:hallo_doctor_client/app/utils/constants/constants.dart';
 import 'package:hallo_doctor_client/app/utils/styles/styles.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
@@ -36,7 +45,6 @@ class NotificationService {
     FirebaseMessaging.onBackgroundMessage(_firebaseMessaggingBackgroundHandler);
     setupFlutterNotification();
     setupTimezone();
-    setupNotificationAction();
   }
   void setupFlutterNotification() async {
     await flutterLocalNotificationsPlugin
@@ -48,55 +56,86 @@ class NotificationService {
             alert: true, badge: true, sound: true);
   }
 
-  void showNotification() {
-    flutterLocalNotificationsPlugin.show(
-      0,
-      "testing",
-      "How you doing",
-      NotificationDetails(
-        android: AndroidNotificationDetails(channel.id, channel.name,
-            channelDescription: channel.description,
-            importance: Importance.high,
-            color: Styles.primaryBlueColor,
-            icon: '@mipmap/ic_launcher'),
-      ),
-    );
-  }
-
-  void listenNotification() {
+  Future listenNotification() async {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
       RemoteNotification? notification = message.notification;
       AndroidNotification? android = message.notification?.android;
       if (notification != null && android != null) {
-        print('masuk notifikasinya');
+        ///call notification triggered
         if (message.data['type'] == 'call') {
-          await showCallNotification(
-              message.data['fromName'],
-              message.data['roomName'],
-              message.data['token'],
-              message.data['timeSlotId']);
-        } else {
+          ///TODO currently there's no really realiable notification call like Whatsapp available that we try, maybe in the future we can test fully working call notification
+
+          message.data['fromName'];
+          message.data['roomName'];
+          message.data['token'];
+          message.data['timeSlotId'];
+          AndroidNotificationDetails androidPlatformChannelSpecifics =
+              AndroidNotificationDetails(
+            channel.id,
+            channel.name,
+            channelDescription: channel.description,
+            color: Styles.primaryBlueColor,
+            playSound: true,
+            icon: notificationIconName,
+            priority: Priority.high,
+          );
+
+          NotificationDetails platformChannelSpecific = NotificationDetails(
+              android: androidPlatformChannelSpecifics,
+              iOS: const DarwinNotificationDetails());
+
+          await flutterLocalNotificationsPlugin.show(notification.hashCode,
+              notification.title, notification.body, platformChannelSpecific);
+        } else if (message.data['type'] == 'chat') {
+          ///make sure when notification arrive we are not in chat route, because it will be annoying
+          ///but we are currently not checking if this notification from this user chat or not
+          if (Get.currentRoute == Routes.CHAT) {
+            ChatController chatController = Get.find<ChatController>();
+            if (chatController.room.id == message.data['roomId']) {
+              ///notification should not showing if app opening chat with notification from same person arrive
+              print(
+                  'Notification chat arrive, but app opening chat with the same person');
+              return;
+            }
+          }
+
           flutterLocalNotificationsPlugin.show(
-              notification.hashCode,
-              notification.title,
-              notification.body,
-              NotificationDetails(
-                  android: AndroidNotificationDetails(channel.id, channel.name,
-                      channelDescription: channel.description,
-                      color: Styles.primaryBlueColor,
-                      playSound: true,
-                      icon: '@mipmap/ic_launcher')));
+            notification.hashCode,
+            notification.title,
+            notification.body,
+            NotificationDetails(
+              android: AndroidNotificationDetails(channel.id, channel.name,
+                  channelDescription: channel.description,
+                  color: Styles.primaryBlueColor,
+                  playSound: true,
+                  icon: '@mipmap/ic_launcher'),
+            ),
+          );
+        } else {
+          AndroidNotificationDetails androidPlatformChannelSpecifics =
+              AndroidNotificationDetails(channel.id, channel.name,
+                  channelDescription: channel.description,
+                  color: Styles.primaryBlueColor,
+                  playSound: true,
+                  icon: notificationIconName,
+                  priority: Priority.high);
+
+          NotificationDetails platformChannelSpecific = NotificationDetails(
+              android: androidPlatformChannelSpecifics,
+              iOS: const DarwinNotificationDetails());
+
+          await flutterLocalNotificationsPlugin.show(notification.hashCode,
+              notification.title, notification.body, platformChannelSpecific);
         }
       }
     });
-    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
       print('a new message opened app are was published');
       RemoteNotification? notification = message.notification;
       AndroidNotification? android = message.notification?.android;
+      var roomData = await ChatService().getRoomById(message.data['roomId']);
       if (notification != null && android != null) {
-        Get.defaultDialog(
-            title: notification.title!,
-            content: Text(notification.body ?? 'body empty'));
+        Get.toNamed(Routes.CHAT, arguments: roomData);
       }
     });
   }
@@ -109,88 +148,15 @@ class NotificationService {
     //printInfo(info: 'local timezone : ' + currentTimeZone);
   }
 
-  void setupNotificationAction() async {
-    FlutterCallkitIncoming.onEvent.listen((event) async {
-      switch (event!.name) {
-        case CallEvent.ACTION_CALL_INCOMING:
-          print('incoming call gaes');
-          break;
-        case CallEvent.ACTION_CALL_ACCEPT:
-          print('body ' + event.body['extra']['roomName']);
-          print('accept the data');
-          TimeSlot selectedTimeslot = await TimeSlotService()
-              .getTimeSlotById(event.body['extra']['selectedTimeslotId']);
-          Get.toNamed('/video-call', arguments: [
-            {
-              'timeSlot': selectedTimeslot,
-              'room': event.body['extra']['roomName'],
-              'token': event.body['extra']['token']
-            }
-          ]);
-          break;
-        case CallEvent.ACTION_CALL_DECLINE:
-          print('declien call gaes');
-          break;
-      }
-    });
-    // connecticube.ConnectycubeFlutterCallKit.instance.init(
-    //   onCallAccepted: _onCallAccepted,
-    //   onCallRejected: _onCallRejected,
-    // );
-  }
-
-  Future showCallNotification(String fromName, String roomName, String token,
-      String selectectedTimeslotId) async {
-    var params = <String, dynamic>{
-      'id': 'adsfadfds',
-      'nameCaller': fromName,
-      'appName': 'Moneyvizer',
-      'avatar': '',
-      'handle': '',
-      'type': 1,
-      'textAccept': 'Accept',
-      'textDecline': 'Decline',
-      'textMissedCall': 'Missed call',
-      'textCallback': 'Call back',
-      'duration': 30000,
-      'extra': <String, dynamic>{
-        'roomName': roomName,
-        'token': token,
-        'selectedTimeslotId': selectectedTimeslotId
-      },
-      'headers': <String, dynamic>{'apiKey': 'Abc@123!', 'platform': 'flutter'},
-      'android': <String, dynamic>{
-        'isCustomNotification': true,
-        'isShowLogo': false,
-        'isShowCallback': false,
-        'ringtonePath': 'system_ringtone_default',
-        'backgroundColor': '#0955fa',
-        'backgroundUrl': 'https://i.pravatar.cc/500',
-        'actionColor': '#4CAF50'
-      },
-      'ios': <String, dynamic>{
-        'iconName': 'CallKitLogo',
-        'handleType': 'generic',
-        'supportsVideo': true,
-        'maximumCallGroups': 2,
-        'maximumCallsPerCallGroup': 1,
-        'audioSessionMode': 'default',
-        'audioSessionActive': true,
-        'audioSessionPreferredSampleRate': 44100.0,
-        'audioSessionPreferredIOBufferDuration': 0.005,
-        'supportsDTMF': true,
-        'supportsHolding': true,
-        'supportsGrouping': false,
-        'supportsUngrouping': false,
-        'ringtonePath': 'system_ringtone_default'
-      }
-    };
-    await FlutterCallkitIncoming.showCallkitIncoming(params);
+  Future onSelectNotification(String payload) async {
+    // Handle notification tap event here
+    Get.toNamed(Routes.APPOINTMENT);
   }
 
   Future<String?> getNotificationToken() async {
     try {
       String? token = await FirebaseMessaging.instance.getToken();
+      print('token : $token');
       return token;
     } catch (e) {
       return Future.error(e);
@@ -199,7 +165,12 @@ class NotificationService {
 
   Future testNotification() async {
     try {
-      await FirebaseFunctions.instance.httpsCallable('notificationTest').call();
+      var callable =
+          FirebaseFunctions.instance.httpsCallable('testNotification');
+      await callable({
+        'token': UserService.userModel?.token,
+      });
+
       //var clientSecret = results.data;
       print('send notification : ');
       //return clientSecret;
@@ -212,8 +183,8 @@ class NotificationService {
   setNotificationAppointment(DateTime time) {
     var notificationDate = Jiffy(time).subtract(minutes: 10).dateTime;
     printInfo(
-        info: 'Date time sebelum TZ Date (dikurang 10 menit): ' +
-            notificationDate.toString());
+        info:
+            'Date time sebelum TZ Date (dikurang 10 menit): $notificationDate');
     var myTzDatetime = tz.TZDateTime.local(
       notificationDate.year,
       notificationDate.month,
@@ -223,7 +194,7 @@ class NotificationService {
       notificationDate.second,
       notificationDate.millisecond,
     );
-    printInfo(info: 'Date time setelah TZ Date ' + myTzDatetime.toString());
+    printInfo(info: 'Date time setelah TZ Date $myTzDatetime');
     flutterLocalNotificationsPlugin.zonedSchedule(
         0,
         'Consultation will start soon',

@@ -49,8 +49,9 @@ class DoctorCategoryView extends GetView<DoctorCategoryController> {
                                     BorderRadius.all(Radius.circular(10)),
                                 color: Colors.blue[200]),
                             padding: const EdgeInsets.all(8.0),
-                            child: CachedNetworkImage(
-                                imageUrl: listCategory[index].iconUrl!),
+                            child: listCategory[index].iconUrl != null
+                                ? Image.network(listCategory[index].iconUrl!)
+                                : Image.asset('assets/icons/Stethoscope.png'),
                           )),
                           SizedBox(
                             height: 5,

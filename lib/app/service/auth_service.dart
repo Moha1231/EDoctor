@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hallo_doctor_client/app/service/firebase_service.dart';
 import 'package:hallo_doctor_client/app/service/google_signin_api.dart';
+import 'package:hallo_doctor_client/app/service/local_notification_service.dart';
 import 'package:hallo_doctor_client/app/service/user_service.dart';
 import 'package:hallo_doctor_client/app/utils/helpers/converter.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
@@ -87,6 +88,7 @@ class AuthService {
   }
 
   Future<void> logout() async {
+    await LocalNotificationService().removeToken();
     _auth.signOut();
   }
 
@@ -94,8 +96,8 @@ class AuthService {
     try {
       var result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      UserService.user = result.user;
-      await UserService.user!.updateDisplayName(username);
+      UserService().currentUserFirebase = result.user;
+      await UserService().currentUserFirebase!.updateDisplayName(username);
       await FirebaseService().userSetup(result.user!, username);
     } on FirebaseAuthException catch (e) {
       return Future.error(e.message!);

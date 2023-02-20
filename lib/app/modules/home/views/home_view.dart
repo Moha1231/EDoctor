@@ -47,8 +47,8 @@ class HomeView extends GetView<HomeController> {
                                     style: mWelcomeTitleStyle,
                                   ),
                                   Text(
-                                    controller
-                                        .userService.currentUser!.displayName!,
+                                    controller.userService.currentUserFirebase!
+                                        .displayName!,
                                     style: mUsernameTitleStyle,
                                   )
                                 ],

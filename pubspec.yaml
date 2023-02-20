@@ -1,5 +1,5 @@
 name: hallo_doctor_client
-version: 1.0.19+13
+version: 1.1.1+14
 publish_to: none
 description: A new Flutter project.
 environment:
@@ -16,7 +16,7 @@ dependencies:
   cloud_functions: 4.0.3
   firebase_storage: 11.0.3
   firebase_database: 10.0.5
-  firebase_messaging: 14.1.0
+  firebase_messaging: ^14.2.2
   google_sign_in: ^5.3.3
   flutter_signin_button: ^2.0.0
   flutter_easyloading: ^3.0.5
@@ -29,7 +29,7 @@ dependencies:
   path_provider: ^2.0.11
   path: ^1.8.0
   flutter_dotenv: ^5.0.2
-  cached_network_image: ^3.2.0
+  cached_network_image: ^3.2.3
   date_picker_timeline: ^1.2.3
   flutter_stripe: ^5.1.0
   flutter_svg: ^1.0.3
@@ -39,25 +39,30 @@ dependencies:
   flutter_form_builder: 7.0.0
   form_builder_validators: ^8.1.1
   package_info_plus: ^1.4.2
-  open_file: ^3.2.1
-  file_picker: ^4.6.1
+  file_picker: ^5.1.0
   uuid: ^3.0.6
   mime: ^1.0.2
   flutter_chat_ui:
-    git: https://github.com/amsyary/flutter_chat_ui.git
+    git:
+      url: https://github.com/amsyary/flutter_chat_ui.git
+      ref: aed67b2
   flutter_firebase_chat_core:
-    git: https://github.com/amsyary/flutter_firebase_chat_core.git
-  flutter_local_notifications: ^9.7.0
-  timezone: ^0.8.0
+    git:
+      url: https://github.com/amsyary/flutter_firebase_chat_core.git
+      ref: a7fb781779957e93cf2063b64c7b6f4fda1eabb1
+    version: ^1.5.6
+  flutter_local_notifications: ^13.0.0
+  timezone: ^0.9.0
   flutter_native_timezone: ^2.0.0
   jiffy: ^5.0.0
   agora_rtc_engine: ^5.3.1
-  permission_handler: ^9.2.0
-  flutter_callkit_incoming: ^1.0.2+1
+  permission_handler: ^10.2.0
+  flutter_callkit_incoming: ^1.0.3+3
   json_serializable: ^6.2.0
-  json_annotation: ^4.5.0
+  json_annotation: ^4.8.0
   image_cropper: ^2.0.3
   sign_in_with_apple: ^4.2.0
+  connectycube_flutter_call_kit: ^2.2.1
 
 dev_dependencies:
   integration_test:
@@ -80,9 +85,10 @@ flutter:
     - assets/animations/
 
 flutter_icons:
-  android: "launcher_icon"
+  android: "ic_launcher"
   ios: true
   image_path: "assets/icons/ic_launcher.png"
+  remove_alpha_ios: true
 
 flutter_native_splash:
   color: "#ffffff"
