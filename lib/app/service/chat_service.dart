@@ -5,9 +5,9 @@ import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import '../models/doctor_model.dart';
 
 class ChatService {
-  Future<Doctor> getDoctorByUserId(String userId) async {
+  Future<Doctor> getDoctorByUserId(String uid) async {
     try {
-      var user = await UserService().getUserModel();
+      var user = await UserService().getUserModelById(uid);
       var doctor = await DoctorService().getDoctorDetail(user!.doctorId!);
       return doctor;
     } catch (e) {

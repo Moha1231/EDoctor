@@ -134,6 +134,26 @@ class UserService {
     }
   }
 
+  Future<UserModel?> getUserModelById(String uid) async {
+    try {
+      if (currentUserFirebase == null) {
+        throw Exception('user is null');
+      }
+      var user = await FirebaseCollection().userCol.doc(uid).get();
+      if (!user.exists) {
+        printError(
+            info:
+                'User data from firestore not found, could be deleted or not saved yet');
+        return null;
+      }
+      this.user = user.data()!;
+      printInfo(info: 'User id : ${this.user.userId}');
+      return user.data();
+    } catch (e) {
+      return Future.error(e.toString());
+    }
+  }
+
   Future updateUserToken(String? token) async {
     try {
       List<String> newListToken;
