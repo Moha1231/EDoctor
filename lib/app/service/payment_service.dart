@@ -29,4 +29,16 @@ class PaymentService {
       }
     }
   }
+
+  Future<String> payWithRazorpay(String timeSlotId, String uid) async {
+    try {
+      var callable =
+          FirebaseFunctions.instance.httpsCallable('requestRazorpayPayment');
+      final results = await callable({'timeSlotId': timeSlotId, 'userId': uid});
+      var orderId = results.data;
+      return orderId;
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
 }
