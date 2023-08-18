@@ -1,5 +1,5 @@
 name: hallo_doctor_client
-version: 1.1.1+14
+version: 1.1.2+15
 publish_to: none
 description: A new Flutter project.
 environment:
@@ -17,7 +17,7 @@ dependencies:
   firebase_storage: 11.0.3
   firebase_database: 10.0.5
   firebase_messaging: ^14.2.2
-  google_sign_in: ^5.3.3
+  google_sign_in: ^6.1.0
   flutter_signin_button: ^2.0.0
   flutter_easyloading: ^3.0.5
   fluttertoast: ^8.0.9

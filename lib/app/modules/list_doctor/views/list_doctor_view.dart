@@ -24,13 +24,17 @@ class ListDoctorView extends GetView<ListDoctorController> {
                       itemCount: listDoctor!.length,
                       itemBuilder: (context, index) {
                         return DoctorCard(
-                            doctorName: listDoctor[index].doctorName!,
-                            doctorCategory:
-                                listDoctor[index].doctorCategory!.categoryName!,
+                            doctorName: listDoctor[index].doctorName ?? '',
+                            doctorCategory: listDoctor[index]
+                                    .doctorCategory!
+                                    .categoryName ??
+                                '',
                             doctorPrice: currencySign +
                                 listDoctor[index].doctorPrice.toString(),
-                            doctorPhotoUrl: listDoctor[index].doctorPicture!,
-                            doctorHospital: listDoctor[index].doctorHospital!,
+                            doctorPhotoUrl: listDoctor[index].doctorPicture ??
+                                'https://t3.ftcdn.net/jpg/00/64/67/80/360_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg',
+                            doctorHospital:
+                                listDoctor[index].doctorHospital ?? '',
                             onTap: () {
                               Get.toNamed('/detail-doctor',
                                   arguments: listDoctor[index]);

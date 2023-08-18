@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 import 'package:hallo_doctor_client/app/modules/login/views/widgets/divider_or.dart';
 import 'package:hallo_doctor_client/app/modules/login/views/widgets/label_button.dart';
@@ -41,13 +42,7 @@ class LoginView extends GetView<LoginController> {
                           onEditingComplete: () {
                             node.nextFocus();
                           },
-                          validator: ((value) {
-                            if (value!.length < 3) {
-                              return 'Name must be more than two characters'.tr;
-                            } else {
-                              return null;
-                            }
-                          }),
+                          validator: FormBuilderValidators.email(),
                           decoration: InputDecoration(
                               hintText: 'Email',
                               border: OutlineInputBorder(

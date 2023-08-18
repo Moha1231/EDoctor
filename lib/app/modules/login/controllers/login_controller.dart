@@ -40,7 +40,11 @@ class LoginController extends GetxController {
       var username = loginFormKey.currentState!.value['username'];
       var password = loginFormKey.currentState!.value['password'];
       EasyLoading.show();
-
+      if (username == null || password == null) {
+        Fluttertoast.showToast(msg: 'Please fill the login form');
+        EasyLoading.dismiss();
+        return;
+      }
       authService.login(username, password).then((value) {
         Get.offAllNamed('/dashboard');
       }).onError((error, stackTrace) {
