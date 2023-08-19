@@ -45,7 +45,7 @@ dependencies:
   flutter_chat_ui:
     git:
       url: https://github.com/amsyary/flutter_chat_ui.git
-      ref: 1355a52
+      ref: 21b0aae
   flutter_firebase_chat_core:
     git:
       url: https://github.com/amsyary/flutter_firebase_chat_core.git

@@ -587,8 +587,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "1355a52"
-      resolved-ref: "1355a526d4804d1fc7e8de27859e7007227e8239"
+      ref: "21b0aae"
+      resolved-ref: "21b0aaeeef745663b8340ee629f26700f81cf385"
       url: "https://github.com/amsyary/flutter_chat_ui.git"
     source: git
     version: "1.5.6"
@@ -1292,10 +1292,10 @@ packages:
     dependency: transitive
     description:
       name: photo_view
-      sha256: "26cb153080a2673bebccaf72d3283e82f8f41a47fe5f9bc5ba8634d2e8a9fc8e"
+      sha256: "8036802a00bae2a78fc197af8a158e3e2f7b500561ed23b4c458107685e645bb"
       url: "https://pub.dev"
     source: hosted
-    version: "0.13.0"
+    version: "0.14.0"
   platform:
     dependency: transitive
     description:
