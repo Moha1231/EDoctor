@@ -1,4 +1,2 @@
 workflows:
   android-build-workflow:
-    environment:
-      java: 17.0.8
