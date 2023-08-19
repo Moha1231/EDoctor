@@ -7,7 +7,7 @@
         {
             "name": "hallo_doctor",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
         },
         {
             "name": "hallo_doctor (profile mode)",
