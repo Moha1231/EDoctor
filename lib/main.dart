@@ -9,7 +9,6 @@ import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 import 'package:hallo_doctor_client/app/service/local_notification_service.dart';
-import 'package:hallo_doctor_client/app/service/notification_service.dart';
 import 'package:hallo_doctor_client/app/utils/environment.dart';
 import 'package:hallo_doctor_client/app/utils/localization.dart';
 import 'app/routes/app_pages.dart';
