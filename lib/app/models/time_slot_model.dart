@@ -1,10 +1,7 @@
-import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'doctor_model.dart';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'time_slot_model.g.dart';
 
