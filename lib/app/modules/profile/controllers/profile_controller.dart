@@ -5,7 +5,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:hallo_doctor_client/app/modules/chat/views/list_users_view.dart';
 import 'package:hallo_doctor_client/app/routes/app_pages.dart';
 import 'package:hallo_doctor_client/app/service/local_notification_service.dart';
 import 'package:package_info_plus/package_info_plus.dart';
