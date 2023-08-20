@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:hallo_doctor_client/app/models/doctor_model.dart';
 import 'package:hallo_doctor_client/app/service/chat_service.dart';
-import '../../../service/user_service.dart';
 import '../controllers/list_chat_controller.dart';
 
 class ListChatView extends GetView<ListChatController> {
