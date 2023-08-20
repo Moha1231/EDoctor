@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 import 'package:hallo_doctor_client/app/modules/chat/views/list_users_view.dart';
 import 'package:hallo_doctor_client/app/routes/app_pages.dart';
 import 'package:hallo_doctor_client/app/service/local_notification_service.dart';
-import 'package:hallo_doctor_client/app/service/notification_service.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:hallo_doctor_client/app/modules/profile/views/pages/change_password.dart';
 import 'package:hallo_doctor_client/app/modules/profile/views/pages/edit_image_page.dart';
