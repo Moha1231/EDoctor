@@ -73,21 +73,9 @@ class DoctorService {
 
   Future<List<Doctor>> getTopRatedDoctor({int limit = 10}) async {
     try {
-      var topRatedDoctor = await FirebaseFirestore.instance
-          .collection('TopRatedDoctor')
-          .limit(limit)
-          .get();
-      List<String> listIdTopRatedDoctor = topRatedDoctor.docs.map((doc) {
-        String myList =
-            (doc.data()['doctorId'] as String).replaceAll(RegExp(r"\s+"), "");
-        return myList;
-      }).toList();
-
-      print('list top rated : ' + listIdTopRatedDoctor.toString());
-      if (listIdTopRatedDoctor.isEmpty) return [];
       var doctorRef = await FirebaseFirestore.instance
           .collection('Doctors')
-          .where(FieldPath.documentId, whereIn: listIdTopRatedDoctor)
+          .where('topRated', isEqualTo: true)
           .get();
       print('length : ' + doctorRef.docs.length.toString());
       List<Doctor> listTopRatedDoctor = doctorRef.docs.map((doc) {
