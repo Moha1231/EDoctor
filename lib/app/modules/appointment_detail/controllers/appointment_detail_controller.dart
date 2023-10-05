@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:hallo_doctor_client/app/models/doctor_model.dart';
 import 'package:hallo_doctor_client/app/models/order_model.dart' as orderModel;
 import 'package:hallo_doctor_client/app/models/time_slot_model.dart';
+import 'package:hallo_doctor_client/app/routes/app_pages.dart';
 import 'package:hallo_doctor_client/app/service/doctor_service.dart';
 import 'package:hallo_doctor_client/app/service/order_service.dart';
 import 'package:hallo_doctor_client/app/service/videocall_service.dart';
@@ -57,7 +58,6 @@ class AppointmentDetailController extends GetxController
         await Future.delayed(const Duration(seconds: 3), () {
           videoCallStatus.value = true;
           token = event.data()!['token'];
-          printInfo(info: 'token : ' + token);
         });
       }
     });
@@ -71,7 +71,7 @@ class AppointmentDetailController extends GetxController
   void startVideoCall() {
     if (videoCallStatus.value) {
       videoCallStatus.value = false;
-      Get.toNamed('/video-call', arguments: [
+      Get.toNamed(Routes.VIDEO_CALL, arguments: [
         {
           'timeSlot': selectedTimeslot,
           'room': selectedTimeslot.timeSlotId,
@@ -96,7 +96,7 @@ class AppointmentDetailController extends GetxController
   }
 
   toConsultationConfirm() {
-    Get.toNamed('/consultation-confirm', arguments: selectedTimeslot);
+    Get.toNamed(Routes.CONSULTATION_CONFIRM, arguments: selectedTimeslot);
   }
 
   Future getOrder() async {
@@ -108,7 +108,11 @@ class AppointmentDetailController extends GetxController
   }
 
   void rescheduleAppointment() {
-    Get.toNamed('/consultation-date-picker',
+    Get.toNamed(Routes.CONSULTATION_DATE_PICKER,
         arguments: [selectedTimeslot.doctor, selectedTimeslot]);
+  }
+
+  void gotoListPrescription() {
+    Get.toNamed(Routes.PRESCRIPTION, arguments: selectedTimeslot);
   }
 }

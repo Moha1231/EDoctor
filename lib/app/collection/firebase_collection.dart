@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:hallo_doctor_client/app/collection/prescription_collection.dart';
 import 'package:hallo_doctor_client/app/models/doctor_model.dart';
+import 'package:hallo_doctor_client/app/models/prescription_model.dart';
 import 'package:hallo_doctor_client/app/models/user_model.dart';
 
 ///Firebase collection class to make it easy accessing the firebase collection, if you wanto add new collection
@@ -14,21 +16,23 @@ class FirebaseCollection {
   static final Map<Type, CollectionReference<dynamic>> _collectionCache = {};
   late CollectionReference<UserModel> userCol;
   late CollectionReference<Doctor> doctorCol;
+  late CollectionReference<PrescriptionModel> prescriptionCol;
   factory FirebaseCollection() {
     return _singleton;
   }
 
   FirebaseCollection._internal() {
-    userCol = _getOrCreateCollection<UserModel>(
+    userCol = getOrCreateCollection<UserModel>(
         collectionName: userCollectionName,
         fromJson: UserModel.fromFirestore,
         toJson: (UserModel model) => model.toJson());
-    doctorCol = _getOrCreateCollection<Doctor>(
+    doctorCol = getOrCreateCollection<Doctor>(
         collectionName: doctorCollectionName,
         fromJson: Doctor.fromFirestore,
         toJson: (Doctor model) => model.toJson());
+    prescriptionCol = PrescriptionCollection.create().collectionRef;
   }
-  static CollectionReference<T> _getOrCreateCollection<T>(
+  static CollectionReference<T> getOrCreateCollection<T>(
       {required String collectionName,
       required T Function(DocumentSnapshot doc) fromJson,
       required Map<String, dynamic> Function(T model) toJson}) {

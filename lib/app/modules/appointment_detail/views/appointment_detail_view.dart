@@ -17,8 +17,17 @@ class AppointmentDetailView extends GetView<AppointmentDetailController> {
           title: Text('Consultation Detail'.tr),
           centerTitle: true,
           actions: [
+            IconButton(
+                onPressed: () {
+                  controller.gotoListPrescription();
+                },
+                icon: Icon(Icons.description_rounded)),
             //list if widget in appbar actions
             PopupMenuButton(
+              icon: Icon(
+                Icons.more_vert,
+                color: Colors.black,
+              ),
               color: Colors.white,
               itemBuilder: (context) => [
                 PopupMenuItem<int>(

@@ -744,10 +744,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_stripe
-      sha256: "1527f3364e9c08332f677d56b6b0a8cdf35bb1446b316dc96eb34045f8651f98"
+      sha256: "8ec182c1f14d34dd68d499c8d015d89773aa3d8d149a24c838ff6e5d51e2dd82"
       url: "https://pub.dev"
     source: hosted
-    version: "5.1.0"
+    version: "9.4.0"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -790,8 +790,16 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "9.0.0"
+  freezed:
+    dependency: "direct dev"
+    description:
+      name: freezed
+      sha256: be7826ed5d87e98c924a839542674fc14edbcb3e4fc0adbc058d680f2b241837
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.4.3"
   freezed_annotation:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: freezed_annotation
       sha256: c3fd9336eb55a38cc1bbd79ab17573113a8deccd0ecbbf926cca3c62803b5c2d
@@ -1513,26 +1521,26 @@ packages:
     dependency: transitive
     description:
       name: stripe_android
-      sha256: "253277fea13925fa170b4dbd906dfaf07b8fc8ac41fe2a971ff7843c1385910d"
+      sha256: "188858dab6cc38c2924457766e365980d80fe807109730bc2928f2376870c619"
       url: "https://pub.dev"
     source: hosted
-    version: "5.1.0"
+    version: "9.4.0"
   stripe_ios:
     dependency: transitive
     description:
       name: stripe_ios
-      sha256: a9e7ac83d1107de431e91221e19c5d2cd0c4e6fc30f14418df963355b4c69dd0
+      sha256: ddcf87cacf3a6fa482568d099332bae69326acfab51a726af9faa31a8ef30af8
       url: "https://pub.dev"
     source: hosted
-    version: "5.1.0"
+    version: "9.4.1"
   stripe_platform_interface:
     dependency: transitive
     description:
       name: stripe_platform_interface
-      sha256: "20dacfeb04d65b149cfaa88a686e7151b494f7dce1e5baf5a21ca71b5bb21eea"
+      sha256: c09591fdb8d200812fdcb6262b71b357f8e9a618a8830897953c95eb6ea4897c
       url: "https://pub.dev"
     source: hosted
-    version: "5.1.0"
+    version: "9.4.0"
   sync_http:
     dependency: transitive
     description:

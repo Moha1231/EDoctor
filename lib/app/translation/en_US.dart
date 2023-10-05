@@ -145,5 +145,7 @@ const Map<String, String> en = {
   "Deleting your account will unsubscribe you from all mailing list":
       "Deleting your account will unsubscribe you from all mailing list",
   "Confirm Account Deletion": "Confirm Account Deletion",
-  "Delete my Account": "Delete my Account"
+  "Delete my Account": "Delete my Account",
+  "Prescription": "Prescription",
+  "Add Prescription": "Add Prescription",
 };
