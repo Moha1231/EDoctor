@@ -1,13 +1,13 @@
-import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:hallo_doctor_client/app/models/doctor_model.dart';
 import 'package:hallo_doctor_client/app/models/order_detail_model.dart';
+import 'package:hallo_doctor_client/app/models/paymob_model.dart';
 import 'package:hallo_doctor_client/app/models/time_slot_model.dart';
-import 'package:hallo_doctor_client/app/modules/profile/controllers/profile_controller.dart';
 import 'package:hallo_doctor_client/app/routes/app_pages.dart';
 import 'package:hallo_doctor_client/app/service/local_notification_service.dart';
 import 'package:hallo_doctor_client/app/service/notification_service.dart';
@@ -139,10 +139,54 @@ class DetailOrderController extends GetxController {
       purchaseFreeTimeslot();
     } else {
       print('purchase stripe');
-      payWithStripe();
+      //payWithStripe();
+      payWithPaymob();
 
       ///if you wanto enable razopay payment gateway uncomment line bellow, and remove line payWithStripe();
       // payWithRazorpay();
+    }
+  }
+
+  void payWithPaymob() async {
+    try {
+      PaymobPaymentType? paymentType =
+          await Get.defaultDialog<PaymobPaymentType>(
+        title: 'Choose Payment type',
+        content: Container(
+          child: Column(
+            children: [
+              TextButton(
+                  onPressed: () {
+                    return Get.back(result: PaymobPaymentType.card);
+                  },
+                  child: Text('Pay With Card')),
+              TextButton(
+                  onPressed: () {
+                    return Get.back(result: PaymobPaymentType.kiosk);
+                  },
+                  child: Text('Pay With Kiosk'))
+            ],
+          ),
+        ),
+        onCancel: () {
+          Get.back();
+        },
+      );
+      if (paymentType == null) {
+        return;
+      }
+      Get.back();
+      EasyLoading.show();
+      String token = await PaymentService().payWithPaymob(
+          selectedTimeSlot.timeSlotId!, userService.getUserId(), paymentType);
+      if (paymentType == PaymobPaymentType.card) {
+        Get.toNamed(Routes.PAYMOB_CARD_PAYMENT,
+            arguments: [token, selectedTimeSlot]);
+      }
+    } catch (e) {
+      Fluttertoast.showToast(msg: e.toString());
+    } finally {
+      EasyLoading.dismiss();
     }
   }
 

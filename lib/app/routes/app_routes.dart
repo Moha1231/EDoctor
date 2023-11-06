@@ -32,6 +32,8 @@ abstract class Routes {
   static const DELETE_ACCOUNT = _Paths.DELETE_ACCOUNT;
   static const PRESCRIPTION = _Paths.PRESCRIPTION;
   static const LIST_PRESCRIPTION = _Paths.LIST_PRESCRIPTION;
+  static const PAYMOB_CARD_PAYMENT = _Paths.PAYMOB_CARD_PAYMENT;
+  static const PAYMOB_KIOSK_PAYMENT = _Paths.PAYMOB_KIOSK_PAYMENT;
 }
 
 abstract class _Paths {
@@ -61,4 +63,6 @@ abstract class _Paths {
   static const DELETE_ACCOUNT = '/delete-account';
   static const PRESCRIPTION = '/prescription';
   static const LIST_PRESCRIPTION = '/list-prescription';
+  static const PAYMOB_CARD_PAYMENT = '/paymob-card-payment';
+  static const PAYMOB_KIOSK_PAYMENT = '/paymob-kiosk-payment';
 }

@@ -34,6 +34,10 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/payment_success/bindings/payment_success_binding.dart';
 import '../modules/payment_success/views/payment_success_view.dart';
+import '../modules/paymobCardPayment/bindings/paymob_card_payment_binding.dart';
+import '../modules/paymobCardPayment/views/paymob_card_payment_view.dart';
+import '../modules/paymobKioskPayment/bindings/paymob_kiosk_payment_binding.dart';
+import '../modules/paymobKioskPayment/views/paymob_kiosk_payment_view.dart';
 import '../modules/prescription/bindings/prescription_binding.dart';
 import '../modules/prescription/views/prescription_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
@@ -193,6 +197,16 @@ class AppPages {
       name: _Paths.LIST_PRESCRIPTION,
       page: () => const ListPrescriptionView(),
       binding: ListPrescriptionBinding(),
+    ),
+    GetPage(
+      name: _Paths.PAYMOB_CARD_PAYMENT,
+      page: () => const PaymobCardPaymentView(),
+      binding: PaymobCardPaymentBinding(),
+    ),
+    GetPage(
+      name: _Paths.PAYMOB_KIOSK_PAYMENT,
+      page: () => const PaymobKioskPaymentView(),
+      binding: PaymobKioskPaymentBinding(),
     ),
   ];
 }

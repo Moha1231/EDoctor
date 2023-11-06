@@ -52,9 +52,8 @@ class ProfileController extends GetxController {
       textCancel: 'Cancel'.tr,
       textConfirm: 'Logout'.tr,
       onConfirm: () {
-        authService.logout().then(
-              (value) => Get.offAllNamed('/login'),
-            );
+        authService.logout();
+        Get.offAllNamed(Routes.LOGIN);
       },
     );
   }

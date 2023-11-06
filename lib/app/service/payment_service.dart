@@ -1,5 +1,6 @@
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:hallo_doctor_client/app/models/paymob_model.dart';
 
 class PaymentService {
   Future<String> getClientSecret(String timeSlotId, String uid) async {
@@ -37,6 +38,21 @@ class PaymentService {
       final results = await callable({'timeSlotId': timeSlotId, 'userId': uid});
       var orderId = results.data;
       return orderId;
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
+
+  Future<String> payWithPaymob(
+      String timeSlotId, String uid, PaymobPaymentType type) async {
+    try {
+      var callable =
+          FirebaseFunctions.instance.httpsCallable('paymobCreateOrder');
+      final results = await callable(
+          {'timeSlotId': timeSlotId, 'userId': uid, 'paymentType': type.name});
+      print('payment types' + type.toString());
+      var userToken = results.data['token'] as String;
+      return userToken;
     } catch (e) {
       return Future.error(e);
     }

@@ -9,6 +9,7 @@ import 'package:integration_test/integration_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:patrol/patrol.dart';
 
 ///Text login & Register app, make sure the app can still run
 void main() async {
@@ -21,6 +22,10 @@ void main() async {
   initializeDateFormatting('en', null);
   FirebaseChatCore.instance
       .setConfig(FirebaseChatCoreConfig(null, 'Rooms', 'Users'));
+
+  patrolTest('test register', ($) async {
+    await $.pumpWidgetAndSettle(HalloDoctorApp(isUserLogin: false));
+  });
 
   testWidgets('Main Test', (WidgetTester tester) async {
     // Run app
@@ -40,6 +45,7 @@ void main() async {
     // Enter text
     await tester.enterText(usernameText, 'test11@gmail.com');
     await tester.enterText(passwordText, 'test11');
+    await tester.testTextInput.receiveAction(TextInputAction.done);
     await tester.pumpAndSettle();
     await tester.pump(Duration(seconds: 10));
 

@@ -8,12 +8,12 @@ class DoctorService {
   //Get list of Doctor schedule base on doctor id
   Future<List<TimeSlot>> getDoctorTimeSlot(Doctor doctor) async {
     try {
-      print('doctor id : ' + doctor.doctorId!);
       //List<TimeSlot> listTimeslot = [];
       QuerySnapshot doctorScheduleRef = await FirebaseFirestore.instance
           .collection('DoctorTimeslot')
           .where('doctorId', isEqualTo: doctor.doctorId)
           .get();
+
       var listTimeslot = doctorScheduleRef.docs.map((doc) {
         var data = doc.data() as Map<String, dynamic>;
         data['timeSlotId'] = doc.reference.id;
@@ -21,7 +21,6 @@ class DoctorService {
 
         return timeSlot;
       }).toList();
-      print('length : ' + listTimeslot.length.toString());
       if (doctorScheduleRef.docs.isEmpty) return [];
       return listTimeslot;
     } catch (e) {
