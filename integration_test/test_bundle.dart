@@ -47,10 +47,10 @@ Future<void> main() async {
 
   final nativeAutomator = NativeAutomator(config: NativeAutomatorConfig());
   await nativeAutomator.initialize();
-  final binding = PatrolBinding.ensureInitialized();
+  final binding = PatrolBinding.ensureInitialized(NativeAutomatorConfig());
   final testExplorationCompleter = Completer<DartGroupEntry>();
 
-  // A special test to expore the hierarchy of groups and tests. This is a hack
+  // A special test to explore the hierarchy of groups and tests. This is a hack
   // around https://github.com/dart-lang/test/issues/1998.
   //
   // This test must be the first to run. If not, the native side likely won't
