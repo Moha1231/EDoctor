@@ -148,4 +148,7 @@ const Map<String, String> en = {
   "Delete my Account": "Delete my Account",
   "Prescription": "Prescription",
   "Add Prescription": "Add Prescription",
+
+  //filter appointment content
+  "Filter": "Filter",
 };

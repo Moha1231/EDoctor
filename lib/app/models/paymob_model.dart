@@ -1,5 +1,7 @@
 enum PaymobPaymentType { card, kiosk }
 
-class PaymobModel {
-  // Implementation of PaymobModel
+class PaymobModelResponse {
+  late String token;
+  String? kioskCode;
+  PaymobModelResponse({required this.token, this.kioskCode});
 }

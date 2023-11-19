@@ -13,4 +13,4 @@ const notificationIconName = 'notification_icon';
 /// Paymobconstants, if you dont use paymob payment gateway just ignore this constant
 /// this will be use to check if the payment in paymob is success
 const String paymobRedirectUrl =
-    'https://us-central1-halodoctor-a1660.cloudfunctions.net/paymobPaymentSuccessHTTPMessage';
+    'https://us-central1-mylessionapp.cloudfunctions.net/paymobPaymentSuccessHTTPMessage';

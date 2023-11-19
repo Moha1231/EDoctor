@@ -138,9 +138,10 @@ class DetailOrderController extends GetxController {
       print('purchase free timeslot : ');
       purchaseFreeTimeslot();
     } else {
-      print('purchase stripe');
-      //payWithStripe();
-      payWithPaymob();
+      payWithStripe();
+
+      ///if you wanto enable paymob payment gateway uncomment line bellow, and remove line payWithStripe();
+      // payWithPaymob();
 
       ///if you wanto enable razopay payment gateway uncomment line bellow, and remove line payWithStripe();
       // payWithRazorpay();
@@ -177,11 +178,17 @@ class DetailOrderController extends GetxController {
       }
       Get.back();
       EasyLoading.show();
-      String token = await PaymentService().payWithPaymob(
+      PaymobModelResponse paymobData = await PaymentService().payWithPaymob(
           selectedTimeSlot.timeSlotId!, userService.getUserId(), paymentType);
       if (paymentType == PaymobPaymentType.card) {
         Get.toNamed(Routes.PAYMOB_CARD_PAYMENT,
-            arguments: [token, selectedTimeSlot]);
+            arguments: [paymobData.token, selectedTimeSlot]);
+      } else {
+        Get.toNamed(Routes.PAYMOB_KIOSK_PAYMENT, arguments: [
+          paymobData.token,
+          paymobData.kioskCode,
+          selectedTimeSlot
+        ]);
       }
     } catch (e) {
       Fluttertoast.showToast(msg: e.toString());

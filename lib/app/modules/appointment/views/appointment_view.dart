@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:hallo_doctor_client/app/modules/appointment/views/filter_content/filter_content.dart';
 import 'package:hallo_doctor_client/app/modules/widgets/empty_list.dart';
 
 import '../controllers/appointment_controller.dart';
@@ -11,10 +12,20 @@ class AppointmentView extends GetView<AppointmentController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Appointment'.tr),
-        centerTitle: true,
-      ),
+      appBar:
+          AppBar(title: Text('Appointment'.tr), centerTitle: true, actions: [
+        IconButton(
+            onPressed: () {
+              Get.bottomSheet(
+                FilterContent(
+                  controller: controller,
+                ),
+                barrierColor: Color.fromRGBO(255, 255, 255, 0.5),
+                enableDrag: false,
+              );
+            },
+            icon: Icon(Icons.filter_list))
+      ]),
       body: RefreshIndicator(
         onRefresh: () {
           return controller.getListAppointment();

@@ -43,7 +43,7 @@ class PaymentService {
     }
   }
 
-  Future<String> payWithPaymob(
+  Future<PaymobModelResponse> payWithPaymob(
       String timeSlotId, String uid, PaymobPaymentType type) async {
     try {
       var callable =
@@ -52,7 +52,15 @@ class PaymentService {
           {'timeSlotId': timeSlotId, 'userId': uid, 'paymentType': type.name});
       print('payment types' + type.toString());
       var userToken = results.data['token'] as String;
-      return userToken;
+
+      PaymobModelResponse paymobModelResponse = PaymobModelResponse(
+        token: results.data['token'] as String,
+      );
+      if (type == PaymobPaymentType.kiosk) {
+        var kioskCode = results.data['kioskCode'] as String;
+        paymobModelResponse.kioskCode = kioskCode;
+      }
+      return paymobModelResponse;
     } catch (e) {
       return Future.error(e);
     }

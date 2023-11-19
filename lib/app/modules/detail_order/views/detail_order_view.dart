@@ -84,9 +84,10 @@ class DetailOrderView extends GetView<DetailOrderController> {
                     ),
                     InkWell(
                       onTap: () {
-                        if (isInReleaseMode) {
-                          controller.makePayment();
-                        } else {
+                        // You can just uncomment this
+                        // if (isInReleaseMode) {
+                        //   controller.makePayment();
+                        // } else {
                           Get.defaultDialog(
                             title: 'Test Mode',
                             content: Text(
@@ -97,7 +98,7 @@ class DetailOrderView extends GetView<DetailOrderController> {
                               controller.makePayment();
                             },
                           );
-                        }
+                        // }
 
                         //
                       },
