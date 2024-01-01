@@ -146,6 +146,7 @@ class HomeView extends GetView<HomeController> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           IconCard(
+                            key: Key('iconDoctorSpecialist'),
                             iconData: Icons.category,
                             text: "Doctor Specialist".tr,
                             onTap: () {
@@ -153,6 +154,7 @@ class HomeView extends GetView<HomeController> {
                             },
                           ),
                           IconCard(
+                            key: Key('iconTopRatedDoctor'),
                             iconData: Icons.list_alt_rounded,
                             text: "Top Rated Doctor".tr,
                             onTap: () {
@@ -160,6 +162,7 @@ class HomeView extends GetView<HomeController> {
                             },
                           ),
                           IconCard(
+                            key: Key('iconSearchDoctor'),
                             iconData: Icons.search,
                             text: "Search Doctor".tr,
                             onTap: () {
@@ -184,6 +187,7 @@ class HomeView extends GetView<HomeController> {
                           Padding(
                             padding: const EdgeInsets.only(right: 20),
                             child: TextButton(
+                              key: Key('buttonViewAllTopRatedDoctor'),
                               onPressed: () {
                                 controller.toTopRatedDoctor();
                               },

@@ -25,7 +25,16 @@ class LoginController extends GetxController {
   }
 
   void loginGoogle() {
-    authService.loginGoogle().then((value) => Get.offAllNamed('/dashboard'));
+    authService
+        .loginGoogle()
+        .then((value) => Get.offAllNamed('/dashboard'))
+        .onError((error, stackTrace) {
+      Fluttertoast.showToast(
+        msg: error.toString(),
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+      );
+    });
   }
 
   void loginApple() {

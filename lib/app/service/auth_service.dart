@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hallo_doctor_client/app/service/firebase_service.dart';
 import 'package:hallo_doctor_client/app/service/google_signin_api.dart';
@@ -14,8 +15,17 @@ class AuthService {
 
   Future<void> loginGoogle() async {
     try {
-      //Google Api  Login
-      final googleUser = await GoogleSignInApi.login();
+      const List<String> scopes = <String>[
+        'email',
+        'https://www.googleapis.com/auth/contacts.readonly',
+      ];
+
+      GoogleSignIn googleSignIn = GoogleSignIn(
+        // Optional clientId
+        // clientId: 'your-client_id.apps.googleusercontent.com',
+        scopes: scopes,
+      );
+      final googleUser = await googleSignIn.signIn();
       GoogleSignInAuthentication authentication =
           await googleUser!.authentication;
       var credential = GoogleAuthProvider.credential(
@@ -26,6 +36,11 @@ class AuthService {
       await FirebaseService().userSetup(user!, user.displayName!);
     } on FirebaseAuthException catch (err) {
       return Future.error(err.message!);
+    } on PlatformException catch (err) {
+      if (err.code == 'sign_in_failed') {
+        return Future.error(err.details ?? 'Sign in Failed');
+      }
+      return Future.error(err.details ?? 'Error Sign in');
     }
   }
 

@@ -27,30 +27,35 @@ class DashboardView extends GetView<DashboardController> {
             items: [
               BottomNavigationBarItem(
                   icon: Icon(
+                    key: Key('homeIcon'),
                     Icons.home,
                     color: Colors.blue[500],
                   ),
                   label: "Home".tr),
               BottomNavigationBarItem(
                   icon: Icon(
+                    key: Key('doctorCategoryIcon'),
                     Icons.contacts,
                     color: Colors.blue[500],
                   ),
                   label: "Doctor".tr),
               BottomNavigationBarItem(
                   icon: Icon(
+                    key: Key('appointmentIcon'),
                     Icons.video_camera_front,
                     color: Colors.blue[500],
                   ),
                   label: "Appointment".tr),
               BottomNavigationBarItem(
                   icon: Icon(
+                    key: Key('chatIcon'),
                     Icons.message,
                     color: Colors.blue[500],
                   ),
                   label: "Chat".tr),
               BottomNavigationBarItem(
                   icon: Icon(
+                    key: Key('profileIcon'),
                     Icons.person,
                     color: Colors.blue[500],
                   ),
