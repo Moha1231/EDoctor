@@ -15,8 +15,9 @@ import 'package:patrol/patrol.dart';
 ///To run the test using patrol use this command, but make sure you have install the patroll cli, follow the documentation
 ///Command : patrol test -t integration_test/main_test.dart
 void main() {
-  String clientEmail = 'test11@gmail.com';
-  String clientPassword = 'test11';
+  //Replace these values with your own
+  String email = 'test11@gmail.com';
+  String password = 'test11';
   setUp(() async {
     await dotenv.load();
     await Firebase.initializeApp();
@@ -29,8 +30,8 @@ void main() {
 
   patrolTest('Login Test', ($) async {
     await $.pumpWidgetAndSettle(HalloDoctorApp(isUserLogin: false));
-    await $(#username).enterText(clientEmail);
-    await $(#password).enterText(clientPassword);
+    await $(#username).enterText(email);
+    await $(#password).enterText(password);
     await $.tester.testTextInput.receiveAction(TextInputAction.done);
     await $(#loginButton).tap(settlePolicy: SettlePolicy.noSettle);
     await $("Welcome Back,").waitUntilExists();
