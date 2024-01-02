@@ -1,12 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
+import 'package:hallo_doctor_client/app/service/chat_service.dart';
 import 'package:hallo_doctor_client/app/service/local_notification_service.dart';
 import 'package:hallo_doctor_client/app/utils/environment.dart';
 import 'package:hallo_doctor_client/app/utils/localization.dart';
@@ -27,6 +28,7 @@ void main() async {
       overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top]);
   FirebaseChatCore.instance
       .setConfig(FirebaseChatCoreConfig(null, 'Rooms', 'Users'));
+  // await ChatService().init();
   runApp(HalloDoctorApp(isUserLogin: isUserLogin));
 }
 

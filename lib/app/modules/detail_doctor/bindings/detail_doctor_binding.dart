@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:hallo_doctor_client/app/service/chat_service.dart';
 import 'package:hallo_doctor_client/app/service/doctor_service.dart';
 
 import '../controllers/detail_doctor_controller.dart';
@@ -11,6 +12,9 @@ class DetailDoctorBinding extends Bindings {
     );
     Get.lazyPut<DoctorService>(
       () => DoctorService(),
+    );
+    Get.lazyPut<ChatService>(
+      () => ChatService(),
     );
   }
 }

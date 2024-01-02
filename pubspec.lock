@@ -141,26 +141,26 @@ packages:
     dependency: "direct main"
     description:
       name: cached_network_image
-      sha256: f98972704692ba679db144261172a8e20feb145636c617af0eb4022132a6797f
+      sha256: "28ea9690a8207179c319965c13cd8df184d5ee721ae2ce60f398ced1219cea1f"
       url: "https://pub.dev"
     source: hosted
-    version: "3.3.0"
+    version: "3.3.1"
   cached_network_image_platform_interface:
     dependency: transitive
     description:
       name: cached_network_image_platform_interface
-      sha256: "56aa42a7a01e3c9db8456d9f3f999931f1e05535b5a424271e9a38cabf066613"
+      sha256: "9e90e78ae72caa874a323d78fa6301b3fb8fa7ea76a8f96dc5b5bf79f283bf2f"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.0"
+    version: "4.0.0"
   cached_network_image_web:
     dependency: transitive
     description:
       name: cached_network_image_web
-      sha256: "759b9a9f8f6ccbb66c185df805fac107f05730b1dab9c64626d1008cca532257"
+      sha256: "42a835caa27c220d1294311ac409a43361088625a4f23c820b006dd9bffb3316"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.0"
+    version: "1.1.1"
   carousel_slider:
     dependency: "direct main"
     description:
@@ -590,21 +590,12 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.3+3"
-  flutter_chat_types:
-    dependency: transitive
-    description:
-      path: "."
-      ref: "8512211967d82a6ea6218740a5839e239fd1970a"
-      resolved-ref: "8512211967d82a6ea6218740a5839e239fd1970a"
-      url: "https://github.com/amsyary/flutter_chat_types.git"
-    source: git
-    version: "3.3.2"
   flutter_chat_ui:
     dependency: "direct main"
     description:
       path: "."
-      ref: "21b0aae"
-      resolved-ref: "21b0aaeeef745663b8340ee629f26700f81cf385"
+      ref: HEAD
+      resolved-ref: "81911257cc76a87ff62e291ff2e39a9f0a893dc5"
       url: "https://github.com/amsyary/flutter_chat_ui.git"
     source: git
     version: "1.5.6"
@@ -629,15 +620,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.5"
-  flutter_firebase_chat_core:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "3a9d945d347c860b1728d4482508cae3d1c8ed48"
-      url: "https://github.com/amsyary/flutter_firebase_chat_core.git"
-    source: git
-    version: "1.5.6"
   flutter_form_builder:
     dependency: "direct main"
     description:
@@ -654,15 +636,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.9.3"
-  flutter_link_previewer:
-    dependency: transitive
-    description:
-      path: "."
-      ref: "431fce3"
-      resolved-ref: "431fce37280a42088f565a4c10b1d648490cf80d"
-      url: "https://github.com/amsyary/flutter_link_previewer.git"
-    source: git
-    version: "2.6.4"
   flutter_linkify:
     dependency: transitive
     description:
@@ -802,10 +775,10 @@ packages:
     dependency: "direct main"
     description:
       name: form_builder_validators
-      sha256: e04998b1597d76a51da7f009ed3b2f12d4173f13e146e8744fd2453e8595a2c9
+      sha256: "19aa5282b7cede82d0025ab031a98d0554b84aa2ba40f12013471a3b3e22bf02"
       url: "https://pub.dev"
     source: hosted
-    version: "9.0.0"
+    version: "9.1.0"
   freezed:
     dependency: "direct dev"
     description:

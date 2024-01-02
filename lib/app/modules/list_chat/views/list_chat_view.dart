@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
+import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 
 import 'package:get/get.dart';
-import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
+import 'package:flutter_chat_ui/flutter_chat_ui_types.dart' as types;
 import 'package:hallo_doctor_client/app/models/doctor_model.dart';
 import 'package:hallo_doctor_client/app/service/chat_service.dart';
 import '../controllers/list_chat_controller.dart';
@@ -32,7 +32,6 @@ class ListChatView extends GetView<ListChatController> {
             itemCount: snapshot.data!.length,
             itemBuilder: (context, index) {
               final room = snapshot.data![index];
-              print('room : ' + room.imageUrl.toString());
               return _buildChatItem(room);
             },
           );
@@ -58,7 +57,7 @@ class ListChatView extends GetView<ListChatController> {
         if (snapshot.data == null) {
           return SizedBox();
         }
-        return GestureDetector(
+        return InkWell(
           onTap: () {
             Get.toNamed('/chat', arguments: [room, snapshot.data]);
           },

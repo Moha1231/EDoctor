@@ -19,10 +19,9 @@ class AppointmentDetailView extends GetView<AppointmentDetailController> {
           actions: [
             IconButton(
                 onPressed: () {
-                  controller.gotoListPrescription();
+                  controller.gotoChatDoctor();
                 },
-                icon: Icon(Icons.description_rounded)),
-            //list if widget in appbar actions
+                icon: Icon(Icons.message)),
             PopupMenuButton(
               icon: Icon(
                 Icons.more_vert,
@@ -33,14 +32,21 @@ class AppointmentDetailView extends GetView<AppointmentDetailController> {
                 PopupMenuItem<int>(
                   value: 0,
                   child: Text(
+                    "Prescription".tr,
+                  ),
+                ),
+                PopupMenuItem<int>(
+                  value: 1,
+                  child: Text(
                     "Reschedule Appointment".tr,
                   ),
                 ),
               ],
               onSelected: (int item) => {
                 if (item == 0)
+                  {controller.gotoListPrescription()}
+                else if (item == 1)
                   {
-                    //cancel appointment click
                     Get.defaultDialog(
                         title: 'Reschedule Appointment'.tr,
                         content: Text(

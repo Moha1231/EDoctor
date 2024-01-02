@@ -157,7 +157,8 @@ class DetailDoctorView extends GetView<DetailDoctorController> {
                   ),
                 ),
                 InkWell(
-                  onTap: () => controller.toChatDoctor(),
+                  onTap: () =>
+                      controller.toChatDoctor(controller.selectedDoctor),
                   child: Container(
                     width: 50,
                     height: 50,

@@ -1,18 +1,20 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:hallo_doctor_client/app/service/notification_service.dart';
 import 'package:hallo_doctor_client/app/utils/environment.dart';
 import 'package:hallo_doctor_client/main.dart';
-import 'package:integration_test/integration_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:patrol/patrol.dart';
 
-///Integration Test using Patrol Test, these test are just few example test to make sure the app is working
-///To run the test using patrol use this command, but make sure you have install the patroll cli, follow the documentation
+///Integration Test using Patrol Test, why using patroll instead of flutter integration test? because default flutter test doesn't
+///support native test, like clicking on allow notification but with patroll you can do all of the native test
+///for more information refer to patroll documentation https://patrol.leancode.co/
+///These test are just example test just to make sure the app is working, you are open to create your own test
+///To run the test using patrol use this command, but make sure you have install the patroll cli, follow the documentation https://patrol.leancode.co/
 ///Command : patrol test -t integration_test/main_test.dart
 void main() {
   //Replace these values with your own

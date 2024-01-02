@@ -8,7 +8,9 @@ import 'package:get/get.dart';
 import 'package:hallo_doctor_client/app/models/doctor_model.dart';
 import 'package:hallo_doctor_client/app/models/order_model.dart' as orderModel;
 import 'package:hallo_doctor_client/app/models/time_slot_model.dart';
+import 'package:hallo_doctor_client/app/modules/detail_doctor/controllers/detail_doctor_controller.dart';
 import 'package:hallo_doctor_client/app/routes/app_pages.dart';
+import 'package:hallo_doctor_client/app/service/chat_service.dart';
 import 'package:hallo_doctor_client/app/service/doctor_service.dart';
 import 'package:hallo_doctor_client/app/service/order_service.dart';
 import 'package:hallo_doctor_client/app/service/videocall_service.dart';
@@ -26,9 +28,11 @@ class AppointmentDetailController extends GetxController
   var database = FirebaseDatabase.instance.ref();
   late StreamSubscription _roomStreaming;
   var active = true.obs;
+  late ChatService chatService;
   @override
   void onInit() async {
     super.onInit();
+    chatService = Get.find();
     DoctorService().getDoctorDetail(selectedTimeslot.doctorid!).then(
       (doc) {
         selectedTimeslot.doctor = doc;
@@ -114,5 +118,18 @@ class AppointmentDetailController extends GetxController
 
   void gotoListPrescription() {
     Get.toNamed(Routes.PRESCRIPTION, arguments: selectedTimeslot);
+  }
+
+  void gotoChatDoctor() async {
+    try {
+      if (selectedTimeslot.doctor == null) {
+        Fluttertoast.showToast(msg: 'No doctor found'.tr);
+      }
+      selectedTimeslot.doctor?.doctorId = selectedTimeslot.doctor?.id;
+      var room = await chatService.createChatRoom(selectedTimeslot.doctor!);
+      Get.toNamed(Routes.CHAT, arguments: [room, selectedTimeslot.doctor]);
+    } catch (e) {
+      Fluttertoast.showToast(msg: e.toString());
+    }
   }
 }

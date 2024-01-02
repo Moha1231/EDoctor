@@ -4,9 +4,10 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
+import 'package:flutter_chat_ui/flutter_chat_ui.dart';
+
 import 'package:get/get.dart';
-import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
+import 'package:flutter_chat_ui/flutter_chat_ui_types.dart' as types;
 import 'package:hallo_doctor_client/app/service/user_service.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mime/mime.dart';

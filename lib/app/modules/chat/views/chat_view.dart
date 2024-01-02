@@ -1,10 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_ui/flutter_chat_ui.dart';
-import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
 
 import 'package:get/get.dart';
-import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
+import 'package:flutter_chat_ui/flutter_chat_ui_types.dart' as types;
+import 'package:hallo_doctor_client/app/routes/app_pages.dart';
 import '../controllers/chat_controller.dart';
 
 class ChatView extends GetView<ChatController> {
@@ -16,10 +15,9 @@ class ChatView extends GetView<ChatController> {
           icon: Icon(Icons.arrow_back),
           onPressed: () => Get.back(),
         ),
-        leadingWidth: 25,
         title: InkWell(
-          // onTap: () =>
-          //     Get.toNamed('/detail-doctor', arguments: controller.doctor),
+          onTap: () =>
+              Get.toNamed(Routes.DETAIL_DOCTOR, arguments: controller.doctor),
           child: Row(
             children: [
               CircleAvatar(
