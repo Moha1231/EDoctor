@@ -18,6 +18,10 @@ import '../modules/detail_doctor/bindings/detail_doctor_binding.dart';
 import '../modules/detail_doctor/views/detail_doctor_view.dart';
 import '../modules/detail_order/bindings/detail_order_binding.dart';
 import '../modules/detail_order/views/detail_order_view.dart';
+import '../modules/detail_transaction_wallet/bindings/detail_transaction_wallet_binding.dart';
+import '../modules/detail_transaction_wallet/views/detail_transaction_wallet_view.dart';
+import '../modules/detail_wallet_history/bindings/detail_wallet_history_binding.dart';
+import '../modules/detail_wallet_history/views/detail_wallet_history_view.dart';
 import '../modules/doctor_category/bindings/doctor_category_binding.dart';
 import '../modules/doctor_category/views/doctor_category_view.dart';
 import '../modules/forgot_password/bindings/forgot_password_binding.dart';
@@ -52,8 +56,14 @@ import '../modules/search_doctor/bindings/search_doctor_binding.dart';
 import '../modules/search_doctor/views/search_doctor_view.dart';
 import '../modules/settings/bindings/settings_binding.dart';
 import '../modules/settings/views/settings_view.dart';
+import '../modules/success_topup/bindings/success_topup_binding.dart';
+import '../modules/success_topup/views/success_topup_view.dart';
 import '../modules/top_rated_doctor/bindings/top_rated_doctor_binding.dart';
 import '../modules/top_rated_doctor/views/top_rated_doctor_view.dart';
+import '../modules/topup_wallet/bindings/topup_wallet_binding.dart';
+import '../modules/topup_wallet/views/topup_wallet_view.dart';
+import '../modules/user_wallet/bindings/user_wallet_binding.dart';
+import '../modules/user_wallet/views/user_wallet_view.dart';
 import '../modules/video_call/bindings/video_call_binding.dart';
 import '../modules/video_call/views/video_call_view.dart';
 
@@ -207,6 +217,31 @@ class AppPages {
       name: _Paths.PAYMOB_KIOSK_PAYMENT,
       page: () => const PaymobKioskPaymentView(),
       binding: PaymobKioskPaymentBinding(),
+    ),
+    GetPage(
+      name: _Paths.USER_WALLET,
+      page: () => const UserWalletView(),
+      binding: UserWalletBinding(),
+    ),
+    GetPage(
+      name: _Paths.TOPUP_WALLET,
+      page: () => const TopupWalletView(),
+      binding: TopupWalletBinding(),
+    ),
+    GetPage(
+      name: _Paths.SUCCESS_TOPUP,
+      page: () => const SuccessTopupView(),
+      binding: SuccessTopupBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAIL_TRANSACTION_WALLET,
+      page: () => const DetailTransactionWalletView(),
+      binding: DetailTransactionWalletBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAIL_WALLET_HISTORY,
+      page: () => const DetailWalletHistoryView(),
+      binding: DetailWalletHistoryBinding(),
     ),
   ];
 }

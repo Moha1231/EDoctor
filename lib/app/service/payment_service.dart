@@ -15,6 +15,26 @@ class PaymentService {
     }
   }
 
+  Future<String> createOrderTopUpStripe(int amount, String uid) async {
+    try {
+      final HttpsCallable callable =
+          FirebaseFunctions.instance.httpsCallable('createOrderTopUpStripe');
+      final HttpsCallableResult result = await callable.call({
+        'amount': amount,
+        'uid': uid,
+      });
+
+      final data = result.data;
+      if (data is Map<String, dynamic> && data.containsKey('clientSecret')) {
+        return data['clientSecret'];
+      } else {
+        throw Exception('cannot get client secret for stripe');
+      }
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
+
   Future<bool> purchaseFreeTimeSlot(String timeSlotId, String uid) async {
     try {
       var callable =

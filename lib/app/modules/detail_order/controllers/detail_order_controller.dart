@@ -101,7 +101,6 @@ class DetailOrderController extends GetxController {
       await Stripe.instance.presentPaymentSheet();
 
       Get.offNamed('/payment-success', arguments: selectedTimeSlot);
-      //TODO implement notification
       await LocalNotificationService().setAppointmentNotification(
           doctor: doctor, timeSlot: selectedTimeSlot);
     } on StripeException catch (err) {

@@ -151,4 +151,9 @@ const Map<String, String> en = {
 
   //filter appointment content
   "Filter": "Filter",
+
+  // User Wallet
+  "Wallet": "Wallet",
+  "User Wallet": "User Wallet",
+  "Top Up": "Top Up",
 };

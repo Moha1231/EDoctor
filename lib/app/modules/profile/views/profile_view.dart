@@ -71,6 +71,13 @@ class ProfileView extends GetView<ProfileController> {
                         controller.toSettings();
                       },
                     ),
+                    ProfileButton(
+                      icon: Icons.account_balance_wallet,
+                      text: 'Wallet'.tr,
+                      onTap: () {
+                        controller.toWallet();
+                      },
+                    ),
                     SizedBox(
                       height: 20,
                     ),

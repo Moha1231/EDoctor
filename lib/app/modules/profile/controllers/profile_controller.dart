@@ -142,6 +142,10 @@ class ProfileController extends GetxController {
     Get.toNamed(Routes.SETTINGS);
   }
 
+  void toWallet() {
+    Get.toNamed(Routes.USER_WALLET);
+  }
+
   // Future<bool> checkGoogleLogin() async {
   //   bool loginGoogle = await AuthService().checkIfGoogleLogin();
   //   print('is login google : ' + loginGoogle.toString());

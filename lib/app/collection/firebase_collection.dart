@@ -1,8 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hallo_doctor_client/app/collection/prescription_collection.dart';
+import 'package:hallo_doctor_client/app/collection/user_wallet_collection.dart';
+import 'package:hallo_doctor_client/app/collection/user_wallet_history_collection.dart';
 import 'package:hallo_doctor_client/app/models/doctor_model.dart';
 import 'package:hallo_doctor_client/app/models/prescription_model.dart';
 import 'package:hallo_doctor_client/app/models/user_model.dart';
+import 'package:hallo_doctor_client/app/models/user_wallet_history_model.dart';
+import 'package:hallo_doctor_client/app/models/user_wallet_model.dart';
 
 ///Firebase collection class to make it easy accessing the firebase collection, if you wanto add new collection
 ///Just add collection name, and create CollectionReference base on the class model, and initialize it in FirebaseCollection._internal function
@@ -17,6 +21,8 @@ class FirebaseCollection {
   late CollectionReference<UserModel> userCol;
   late CollectionReference<Doctor> doctorCol;
   late CollectionReference<PrescriptionModel> prescriptionCol;
+  late CollectionReference<UserWalletModel> userWalletCol;
+  late CollectionReference<UserWalletHistoryModel> userWalletHistoryCol;
   factory FirebaseCollection() {
     return _singleton;
   }
@@ -31,6 +37,8 @@ class FirebaseCollection {
         fromJson: Doctor.fromFirestore,
         toJson: (Doctor model) => model.toJson());
     prescriptionCol = PrescriptionCollection.create().collectionRef;
+    userWalletCol = UserWalletCollection.create().collectionRef;
+    userWalletHistoryCol = UserWalletHistoryCollection.create().collectionRef;
   }
   static CollectionReference<T> getOrCreateCollection<T>(
       {required String collectionName,

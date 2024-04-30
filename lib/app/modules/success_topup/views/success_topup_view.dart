@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hallo_doctor_client/app/utils/timeformat.dart';
 import 'package:lottie/lottie.dart';
-import 'package:hallo_doctor_client/app/utils/constants/constants.dart';
-import 'package:hallo_doctor_client/app/utils/constants/style_constants.dart';
 
-import '../controllers/payment_success_controller.dart';
+import '../../../utils/constants/constants.dart';
+import '../../../utils/constants/style_constants.dart';
+import '../controllers/success_topup_controller.dart';
 
-class PaymentSuccessView extends GetView<PaymentSuccessController> {
+class SuccessTopupView extends GetView<SuccessTopupController> {
+  const SuccessTopupView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Payment Success'.tr),
+          title: Text('Top Up Success'.tr),
           centerTitle: true,
         ),
         body: Container(
@@ -33,7 +35,7 @@ class PaymentSuccessView extends GetView<PaymentSuccessController> {
                     controller.animController.forward();
                   })),
               Text(
-                'Payment Successfull'.tr,
+                'Top Up Payment Successfull'.tr,
                 style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w600,
                     fontSize: 17,
@@ -54,13 +56,13 @@ class PaymentSuccessView extends GetView<PaymentSuccessController> {
               Divider(
                 height: 30,
               ),
-              Obx(() => Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text('TOTAL AMOUNT PAID'.tr),
-                      Text(currencySign + controller.price.value.toString())
-                    ],
-                  )),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text('TOTAL TOP UP'.tr),
+                  Text(currencySign + controller.topUpAmount.toString())
+                ],
+              ),
               Divider(
                 height: 30,
               ),
@@ -68,7 +70,7 @@ class PaymentSuccessView extends GetView<PaymentSuccessController> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text('TRANSACTION DATE'.tr),
-                  Text(TimeFormat().formatDate(DateTime.now().toLocal()))
+                  Text(TimeFormat().formatDate(DateTime.now()))
                 ],
               ),
               Divider(
@@ -76,7 +78,7 @@ class PaymentSuccessView extends GetView<PaymentSuccessController> {
               ),
               ElevatedButton(
                   onPressed: () {
-                    controller.goHome();
+                    controller.gotoWallet();
                   },
                   child: Text('Go Home'.tr))
             ],

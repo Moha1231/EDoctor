@@ -34,6 +34,11 @@ abstract class Routes {
   static const LIST_PRESCRIPTION = _Paths.LIST_PRESCRIPTION;
   static const PAYMOB_CARD_PAYMENT = _Paths.PAYMOB_CARD_PAYMENT;
   static const PAYMOB_KIOSK_PAYMENT = _Paths.PAYMOB_KIOSK_PAYMENT;
+  static const USER_WALLET = _Paths.USER_WALLET;
+  static const TOPUP_WALLET = _Paths.TOPUP_WALLET;
+  static const SUCCESS_TOPUP = _Paths.SUCCESS_TOPUP;
+  static const DETAIL_TRANSACTION_WALLET = _Paths.DETAIL_TRANSACTION_WALLET;
+  static const DETAIL_WALLET_HISTORY = _Paths.DETAIL_WALLET_HISTORY;
 }
 
 abstract class _Paths {
@@ -65,4 +70,9 @@ abstract class _Paths {
   static const LIST_PRESCRIPTION = '/list-prescription';
   static const PAYMOB_CARD_PAYMENT = '/paymob-card-payment';
   static const PAYMOB_KIOSK_PAYMENT = '/paymob-kiosk-payment';
+  static const USER_WALLET = '/user-wallet';
+  static const TOPUP_WALLET = '/topup-wallet';
+  static const SUCCESS_TOPUP = '/success-topup';
+  static const DETAIL_TRANSACTION_WALLET = '/detail-transaction-wallet';
+  static const DETAIL_WALLET_HISTORY = '/detail-wallet-history';
 }
