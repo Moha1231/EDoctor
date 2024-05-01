@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -79,41 +81,75 @@ class DetailOrderView extends GetView<DetailOrderController> {
                         ),
                       ),
                     ),
+                    GetBuilder<DetailOrderController>(
+                      builder: (_) {
+                        if (controller.userWallet != null) {
+                          return FormBuilder(
+                            key: controller.formKey,
+                            child: Column(
+                              children: [
+                                FormBuilderDropdown(
+                                  name: 'payment_method',
+                                  isExpanded: true,
+                                  decoration: InputDecoration(
+                                      hintText: 'Payment Method',
+                                      border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                          borderSide: BorderSide(
+                                            width: 1,
+                                            style: BorderStyle.solid,
+                                          ))),
+                                  items: controller.paymentType.map((option) {
+                                    if (option == 'Wallet') {
+                                      return DropdownMenuItem(
+                                        child: Text(
+                                            'Wallet with Balance: $currencySign${controller.userWallet?.balance?.toString() ?? '0'}'),
+                                        value: option,
+                                      );
+                                    }
+                                    return DropdownMenuItem(
+                                      child: Text(option),
+                                      value: option,
+                                    );
+                                  }).toList(),
+                                  validator: FormBuilderValidators.required(),
+                                ),
+                              ],
+                            ),
+                          );
+                        } else {
+                          return Center(child: CircularProgressIndicator());
+                        }
+                      },
+                    ),
                     SizedBox(
                       height: 20,
                     ),
-                    InkWell(
-                      onTap: () {
-                        // You can just uncomment this
-                        // if (isInReleaseMode) {
-                        //   controller.makePayment();
-                        // } else {
-                          Get.defaultDialog(
-                            title: 'Test Mode',
-                            content: Text(
-                                'This is a testing mode, to make a payment in test mode, please enter the number 42 consecutively in the credit card details, E.g. credit card: 424242424244242'),
-                            textConfirm: 'Make Payment With Stripe',
-                            onConfirm: () {
-                              Get.back();
-                              controller.makePayment();
-                            },
-                          );
-                        // }
-
-                        //
+                    GetBuilder<DetailOrderController>(
+                      builder: (_) {
+                        return Container(
+                            child: controller.userWallet != null
+                                ? InkWell(
+                                    onTap: () {
+                                      controller.makePayment();
+                                    },
+                                    child: Container(
+                                      height: 50,
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(50)),
+                                        color: secondaryColor,
+                                      ),
+                                      child: Text(
+                                        'Confirm'.tr,
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
+                                  )
+                                : SizedBox());
                       },
-                      child: Container(
-                        height: 50,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(50)),
-                          color: secondaryColor,
-                        ),
-                        child: Text(
-                          'Confirm'.tr,
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
                     ),
                     SizedBox(
                       height: 10,

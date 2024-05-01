@@ -4,7 +4,9 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:hallo_doctor_client/app/models/user_wallet_model.dart';
 import 'package:hallo_doctor_client/app/routes/app_pages.dart';
+import 'package:hallo_doctor_client/app/service/user_wallet_service.dart';
 
 import '../../../service/payment_service.dart';
 import '../../../service/user_service.dart';
@@ -16,8 +18,9 @@ class TopupWalletController extends GetxController {
   final UserService userService = Get.find();
   final int minimumTopUpAmount = 1;
   final int maximumTopUpAmount = 1000;
+
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
   }
 

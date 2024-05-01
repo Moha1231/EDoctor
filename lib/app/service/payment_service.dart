@@ -51,6 +51,27 @@ class PaymentService {
     }
   }
 
+  Future<bool> purchaseTimeSlotWithWallet(
+      {required String userId, required String timeSlotId}) async {
+    try {
+      final HttpsCallable callable = FirebaseFunctions.instance
+          .httpsCallable('purchaseTimeSlotWithWallet');
+      final HttpsCallableResult result = await callable.call({
+        'userId': userId,
+        'timeSlotId': timeSlotId,
+      });
+
+      final data = result.data;
+      if (data is Map<String, dynamic> && data.containsKey('success')) {
+        return data['success'];
+      } else {
+        throw Exception('Failed to purchase time slot with wallet balance');
+      }
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
+
   Future<String> payWithRazorpay(String timeSlotId, String uid) async {
     try {
       var callable =
