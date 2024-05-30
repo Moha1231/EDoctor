@@ -7,7 +7,7 @@ environment:
 
 dependencies:
   cupertino_icons: ^1.0.2
-  get: 4.6.5
+  get: 4.6.6
   flutter:
     sdk: flutter
   firebase_core: ^2.17.0
@@ -35,7 +35,6 @@ dependencies:
   flutter_svg: ^1.0.3
   lottie: ^1.3.0
   http: ^1.1.0
-  rounded_loading_button: ^2.1.0
   flutter_form_builder: ^9.1.0
   form_builder_validators: ^9.1.0
   package_info_plus: ^4.1.0
@@ -78,7 +77,7 @@ dev_dependencies:
   change_app_package_name: ^1.1.0
   build_runner: ^2.1.11
   freezed: ^2.4.3
-  patrol: ^3.0.2+1
+  patrol: ^3.7.2
   mockito: ^5.4.2
 
 flutter:
