@@ -62,7 +62,7 @@ class ChatService extends GetxService {
         return Future.error('doctor id is null');
       }
       final otherUser = types.User(
-          id: doctorToChat.doctorId!,
+          id: doctorUserId,
           displayName: doctorToChat.doctorName,
           imageUrl: doctorToChat.doctorPicture);
       final room = await FirebaseChatCore.instance.createRoom(otherUser);
