@@ -268,6 +268,20 @@ class DetailOrderController extends GetxController {
   void payWithWallet() async {
     try {
       EasyLoading.show();
+      if (userWallet == null) {
+        Fluttertoast.showToast(
+            msg: 'Wallet is empty, please top up in Wallet section');
+        return;
+      }
+      if (userWallet!.balance! <= 0) {
+        Fluttertoast.showToast(
+            msg: 'Your wallet is empty, please top up in Wallet section');
+        return;
+      }
+      if (userWallet!.balance! < selectedTimeSlot.price!) {
+        Fluttertoast.showToast(msg: 'Your wallet balance is not enough');
+        return;
+      }
       String userId = UserService().getUserId();
       if (selectedTimeSlot.timeSlotId == null) {
         throw Exception('time slot id is null');
