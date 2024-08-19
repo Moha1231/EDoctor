@@ -14,7 +14,8 @@ import '../controllers/home_controller.dart';
 class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
-    final CarouselController caoruselController = CarouselController();
+    final CarouselSliderController caoruselController =
+        CarouselSliderController();
     return Scaffold(
       backgroundColor: mBackgroundColor,
       body: SafeArea(
