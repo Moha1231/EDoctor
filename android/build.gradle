@@ -1,5 +1,12 @@
 buildscript {
     ext.kotlin_version = '1.9.0'
+    ext {
+    compileSdkVersion   = 34
+    targetSdkVersion    = 34
+    appCompatVersion    = "1.7.0"
+    minSdkVersion       = 23
+    }
+    subprojects { afterEvaluate { android { compileSdkVersion 34 } } }
     repositories {
         google()
         mavenCentral()

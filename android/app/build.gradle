@@ -31,7 +31,9 @@ if (keystorePropertiesFile.exists()) {
        keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
    }
 android {
-    compileSdkVersion 34
+    def buildConfig = rootProject.extensions.getByName("ext")
+    compileSdk buildConfig.compileSdkVersion
+    compileSdkVersion buildConfig.compileSdkVersion
     ndkVersion flutter.ndkVersion
     testOptions {
     execution "ANDROIDX_TEST_ORCHESTRATOR"
@@ -51,8 +53,8 @@ android {
         applicationId "com.dancingwhale.halodoctor.client.hallo_doctor_client"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
-        minSdkVersion 23
-        targetSdkVersion 34
+        minSdkVersion buildConfig.minSdkVersion
+        targetSdkVersion buildConfig.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         testInstrumentationRunner "pl.leancode.patrol.PatrolJUnitRunner"
