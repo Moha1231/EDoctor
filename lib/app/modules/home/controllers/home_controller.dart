@@ -4,6 +4,7 @@ import 'package:hallo_doctor_client/app/modules/dashboard/controllers/dashboard_
 import 'package:hallo_doctor_client/app/service/auth_service.dart';
 import 'package:hallo_doctor_client/app/service/carousel_service.dart';
 import 'package:hallo_doctor_client/app/service/user_service.dart';
+import '../../ai/ui/views/chat_view.dart';
 
 class HomeController extends GetxController {
   //TODO: Implement HomeController
@@ -45,5 +46,9 @@ class HomeController extends GetxController {
 
   void toSearchDoctor() {
     Get.toNamed('/search-doctor');
+  }
+
+  void toedoctorai() {
+    Get.to(() => CharView());
   }
 }

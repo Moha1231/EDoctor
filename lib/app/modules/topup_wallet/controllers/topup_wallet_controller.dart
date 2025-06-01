@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:hallo_doctor_client/app/models/user_wallet_model.dart';
 import 'package:hallo_doctor_client/app/routes/app_pages.dart';
 import 'package:hallo_doctor_client/app/service/user_wallet_service.dart';
+import 'package:hallo_doctor_client/app/service/local_notification_service.dart';
 
 import '../../../service/payment_service.dart';
 import '../../../service/user_service.dart';
@@ -49,6 +50,7 @@ class TopupWalletController extends GetxController {
       EasyLoading.dismiss();
       await Stripe.instance.presentPaymentSheet();
       Get.offNamed(Routes.SUCCESS_TOPUP, arguments: [amount]);
+      testButton();
     } catch (e) {
       Fluttertoast.showToast(msg: e.toString(), toastLength: Toast.LENGTH_LONG);
     } finally {
@@ -79,6 +81,27 @@ class TopupWalletController extends GetxController {
         }
         EasyLoading.dismiss();
       }
+    }
+  }
+
+  Future testButton() async {
+    try {
+      DateTime scheduleTime = DateTime.now();
+      final oneMinutefromNow = scheduleTime.add(const Duration(seconds: 30));
+      //  debugPrint('Notification Scheduled for $oneMinutefromNow');
+      LocalNotificationService().scheduleNotification(
+          title: 'Your Balance',
+          body: 'Funds have been added to the wallet successfully',
+          scheduledNotificationDateTime: oneMinutefromNow);
+      //NotificationService().testNotification();
+      // DateTime now = DateTime.now();
+      // Duration tenMinutes = Duration(minutes: 10);
+      // DateTime tenMinutesBefore = now.subtract(tenMinutes);
+
+      // print(
+      //     'Ten minutes before ${now.toString()}: ${tenMinutesBefore.toString()}');
+    } catch (e) {
+      return Future.error(e.toString());
     }
   }
 }

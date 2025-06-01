@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Hallo Doctor</string>
+	<string>E Doctor</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -60,7 +60,7 @@
 		<array>
 			<!-- TODO Replace this value: -->
 			<!-- Copied from GoogleService-Info.plist key REVERSED_CLIENT_ID -->
-			<string>com.googleusercontent.apps.154487654101-md5au34bgleijfrfbe38a9g9d3c0dko7</string>
+			<string>com.googleusercontent.apps.214457383615-9i4nmh4id68efu5p8thvfifkl2av18nn</string>
 		</array>
 	</dict>
 </array>

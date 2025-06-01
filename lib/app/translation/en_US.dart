@@ -1,5 +1,5 @@
 const Map<String, String> en = {
-  'App Name': 'Hallo Doctor',
+  'App Name': 'E Doctor',
   'Welcome Back,': 'Welcome Back,',
   'Hi ': 'Hi ',
   'Doctor Specialist': 'Doctor Specialist',
@@ -156,4 +156,5 @@ const Map<String, String> en = {
   "Wallet": "Wallet",
   "User Wallet": "User Wallet",
   "Top Up": "Top Up",
+  'Ask Doctor video call': 'Ask Doctor video call'
 };

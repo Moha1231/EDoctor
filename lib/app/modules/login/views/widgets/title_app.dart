@@ -20,7 +20,7 @@ class TitleApp extends StatelessWidget {
         RichText(
           textAlign: TextAlign.center,
           text: TextSpan(
-            text: 'Halo',
+            text: 'E',
             style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.w700,

@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hallo_doctor_client/app/modules/profile/views/widgets/header_curve_widget.dart';
 import 'package:hallo_doctor_client/app/modules/profile/views/widgets/profile_button.dart';
-import 'package:hallo_doctor_client/app/utils/localization.dart';
+// import 'package:hallo_doctor_client/app/service/notification_service.dart';
+// import 'package:hallo_doctor_client/app/utils/localization.dart';
 import '../controllers/profile_controller.dart';
 import 'widgets/display_image_widget.dart';
+// import 'package:hallo_doctor_client/app/service/local_notification_service.dart';
+// import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class ProfileView extends GetView<ProfileController> {
   @override
@@ -78,6 +81,22 @@ class ProfileView extends GetView<ProfileController> {
                         controller.toWallet();
                       },
                     ),
+
+                    //    ProfileButton(
+                    //    icon: Icons.account_balance_wallet,
+                    //    text: 'Wallet'.tr,
+                    //    onTap: () {
+                    //     controller.toaichat();
+                    //    },
+                    //    ),
+                    ProfileButton(
+                      onTap: () {
+                        controller.supportwhatsup();
+                      },
+                      icon: Icons.support_agent_rounded,
+                      text: 'Whatsup Support'.tr,
+                    ),
+
                     SizedBox(
                       height: 20,
                     ),
@@ -90,6 +109,15 @@ class ProfileView extends GetView<ProfileController> {
                         child: Text('Logout'.tr),
                       ),
                     ),
+                    //   Container(
+                    //    width: double.infinity,
+                    //   child: ElevatedButton(
+                    //     onPressed: () async {
+                    //        await controller.testButton();
+                    //      },
+                    //      child: Text('Test Notification'.tr),
+                    //     ),
+                    //   ),
                     //uncomment if you wanto test something
                     // ElevatedButton(
                     //   key: Key('testButton'),

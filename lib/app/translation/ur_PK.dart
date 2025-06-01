@@ -1,5 +1,5 @@
 const Map<String, String> ur = {
-  'App Name': 'Hallo Doctor',
+  'App Name': 'E Doctor',
   'Welcome Back,': 'Welcome Back,',
   'Hi ': 'Hi ',
   'Doctor Specialist': 'Doctor Specialist',

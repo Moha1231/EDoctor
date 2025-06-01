@@ -7,23 +7,29 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
-import 'package:hallo_doctor_client/app/service/chat_service.dart';
 import 'package:hallo_doctor_client/app/service/local_notification_service.dart';
 import 'package:hallo_doctor_client/app/utils/environment.dart';
 import 'package:hallo_doctor_client/app/utils/localization.dart';
 import 'app/routes/app_pages.dart';
 import 'app/service/firebase_service.dart';
 import 'package:intl/date_symbol_data_local.dart';
+// ignore: depend_on_referenced_packages
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:hallo_doctor_client/app/modules/ai/core/di/locator.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 //Main App
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Future.delayed(const Duration(seconds: 5));
+  FlutterNativeSplash.remove();
   await dotenv.load();
   await Firebase.initializeApp();
   LocalNotificationService().initNotification();
   bool isUserLogin = await FirebaseService().checkUserAlreadyLogin();
   Stripe.publishableKey = Environment.stripePublishableKey;
   initializeDateFormatting('en', null);
+  setUpLocator();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
       overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top]);
   FirebaseChatCore.instance
@@ -40,7 +46,7 @@ class HalloDoctorApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "Application",
+      title: "E Doctor",
       initialRoute: isUserLogin ? AppPages.DASHBOARD : AppPages.LOGIN,
       getPages: AppPages.routes,
       builder: EasyLoading.init(),

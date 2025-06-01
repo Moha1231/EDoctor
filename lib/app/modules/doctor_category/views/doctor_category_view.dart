@@ -30,7 +30,7 @@ class DoctorCategoryView extends GetView<DoctorCategoryController> {
               child: controller.obx((listCategory) => GridView.builder(
                   itemCount: listCategory!.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
+                      crossAxisCount: 2,
                       crossAxisSpacing: 20,
                       mainAxisSpacing: 10),
                   itemBuilder: (context, index) {

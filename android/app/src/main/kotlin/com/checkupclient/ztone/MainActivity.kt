@@ -1,4 +1,4 @@
-package com.dancingwhale.halodoctor.client.hallo_doctor_client
+package com.checkupclient.ztone
 
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.android.FlutterFragmentActivity

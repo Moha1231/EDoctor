@@ -147,6 +147,14 @@ class HomeView extends GetView<HomeController> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           IconCard(
+                            key: Key('iconDoctorAiChat'),
+                            iconData: Icons.category,
+                            text: "E Doctor Ai".tr,
+                            onTap: () {
+                              controller.toedoctorai();
+                            },
+                          ),
+                          IconCard(
                             key: Key('iconDoctorSpecialist'),
                             iconData: Icons.category,
                             text: "Doctor Specialist".tr,
@@ -265,8 +273,8 @@ class HomeView extends GetView<HomeController> {
 }
 
 final List<String> imgListAsset = [
-  'assets/images/carousel1.jpg',
-  'assets/images/carousel1.jpg'
+  'assets/images/carousel1.png',
+  'assets/images/carousel2.png'
 ];
 
 List<Widget> imgListAssetSlider(List<String?> imgCarouselList) {

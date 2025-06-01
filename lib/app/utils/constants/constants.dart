@@ -1,4 +1,4 @@
-const appName = 'Hallo Doctor';
+const appName = 'E Doctor';
 
 ///This is only currency sign, any currency sign in this app will change to this,
 ///this is not going to change the real currency, you need to change it in the cloud function

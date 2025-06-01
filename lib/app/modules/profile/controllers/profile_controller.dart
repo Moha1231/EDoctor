@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:url_launcher/url_launcher.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -13,6 +13,7 @@ import 'package:hallo_doctor_client/app/modules/profile/views/pages/edit_image_p
 import 'package:hallo_doctor_client/app/modules/profile/views/pages/update_email_page.dart';
 import 'package:hallo_doctor_client/app/service/auth_service.dart';
 import 'package:hallo_doctor_client/app/service/user_service.dart';
+// import '../../ai/ui/views/chat_view.dart';
 
 class ProfileController extends GetxController {
   //TODO: Implement ProfileController
@@ -139,13 +140,20 @@ class ProfileController extends GetxController {
   }
 
   void toSettings() {
+    // testButton();
     Get.toNamed(Routes.SETTINGS);
   }
 
   void toWallet() {
+    //testButton();
     Get.toNamed(Routes.USER_WALLET);
   }
 
+//  void toaichat() {
+  //Get.toNamed(Routes.USER_WALLET);
+  //  Get.to(CharView);
+  //   Get.to(() => CharView());
+//  }
   // Future<bool> checkGoogleLogin() async {
   //   bool loginGoogle = await AuthService().checkIfGoogleLogin();
   //   print('is login google : ' + loginGoogle.toString());
@@ -156,4 +164,21 @@ class ProfileController extends GetxController {
   //   }
   //   return loginGoogle;
   // }
+
+  supportwhatsup() async {
+    var contact = "+0201061221444";
+    var androidUrl = "whatsapp://send?phone=$contact&text=Hi, I need some help";
+    var iosUrl =
+        "https://wa.me/$contact?text=${Uri.parse('Hi, I need some help')}";
+
+    try {
+      if (Platform.isIOS) {
+        await launchUrl(Uri.parse(iosUrl));
+      } else {
+        await launchUrl(Uri.parse(androidUrl));
+      }
+    } on Exception {
+      EasyLoading.showError('WhatsApp is not installed.');
+    }
+  }
 }

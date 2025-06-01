@@ -49,8 +49,9 @@ android {
     }
 
     defaultConfig {
+        multiDexEnabled true
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.dancingwhale.halodoctor.client.hallo_doctor_client"
+        applicationId "com.checkupclient.ztone"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
         minSdkVersion buildConfig.minSdkVersion
@@ -90,4 +91,7 @@ dependencies {
     androidTestUtil "androidx.test:orchestrator:1.4.2"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.2.2'
+    implementation 'androidx.window:window:1.0.0'
+    implementation 'androidx.window:window-java:1.0.0'
 }

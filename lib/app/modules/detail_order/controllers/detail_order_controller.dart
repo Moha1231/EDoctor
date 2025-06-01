@@ -114,6 +114,7 @@ class DetailOrderController extends GetxController {
       Get.offNamed('/payment-success', arguments: selectedTimeSlot);
       await LocalNotificationService().setAppointmentNotification(
           doctor: doctor, timeSlot: selectedTimeSlot);
+      //    addnofi();
     } on StripeException catch (err) {
       Fluttertoast.showToast(msg: err.error.message!);
       return null;
@@ -148,6 +149,9 @@ class DetailOrderController extends GetxController {
           selectedTimeSlot.timeSlotId!, userService.getUserId());
       if (result) {
         Get.offNamed('/payment-success', arguments: selectedTimeSlot);
+        await LocalNotificationService().setAppointmentNotification(
+            doctor: doctor, timeSlot: selectedTimeSlot);
+        //  addnofi();
       }
     } catch (e) {
       Fluttertoast.showToast(msg: e.toString(), toastLength: Toast.LENGTH_LONG);
@@ -176,7 +180,7 @@ class DetailOrderController extends GetxController {
             });
         if (data != null && data) {
           if (formKey.currentState!.value['payment_method'] == 'Stripe') {
-            showDialogStripeTesting();
+            payWithStripe();
           } else if (formKey.currentState!.value['payment_method'] ==
               'Wallet') {
             payWithWallet();
@@ -289,10 +293,32 @@ class DetailOrderController extends GetxController {
       await PaymentService().purchaseTimeSlotWithWallet(
           userId: userId, timeSlotId: selectedTimeSlot.timeSlotId!);
       Get.offNamed(Routes.PAYMENT_SUCCESS, arguments: selectedTimeSlot);
+      await LocalNotificationService().setAppointmentNotification(
+          doctor: doctor, timeSlot: selectedTimeSlot);
+      //addnofi();
     } catch (e) {
       Fluttertoast.showToast(msg: e.toString());
     } finally {
       EasyLoading.dismiss();
+    }
+  }
+
+  void nofit() async {
+    await LocalNotificationService()
+        .setAppointmentNotification(doctor: doctor, timeSlot: selectedTimeSlot);
+  }
+
+  Future addnofi() async {
+    try {
+      //     DateTime scheduleTime = DateTime.now();
+      // final oneMinutefromNow = scheduleTime.add(const Duration(seconds: 20));
+      //  debugPrint('you are add  to your list');
+      LocalNotificationService().scheduleNotification(
+          title: 'tilte',
+          body: 'body',
+          scheduledNotificationDateTime: DateTime.now());
+    } catch (e) {
+      return Future.error(e.toString());
     }
   }
 }

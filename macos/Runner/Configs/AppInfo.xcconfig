@@ -8,7 +8,7 @@
 PRODUCT_NAME = hallo_doctor
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = dancingwhale.halloDoctor
+PRODUCT_BUNDLE_IDENTIFIER = com.checkupclient.ztone
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2022 dancingwhale. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2022 ztone tech. All rights reserved.
